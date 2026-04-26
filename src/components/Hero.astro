@@ -7,7 +7,8 @@
     <div class="container hero-content">
         <div class="hero-text">
             <h1 class="hero-title">
-                SABOR QUE <span class="text-gradient">MANDA</span>
+                <span class="hero-brand">Central de Hamburguesas</span>
+                <span class="hero-tagline">Sabor que Manda</span>
             </h1>
             <p class="hero-subtitle">
                 La central del sabor urbano. Hamburguesas, boneless, hot dogs y más. 
@@ -19,11 +20,12 @@
             </div>
         </div>
         <div class="hero-characters">
-            <img src="/characters/The_Crew.png" alt="La banda completa de Central de Hamburguesas, todos los personajes del sabor urbano juntos" class="hero-crew" fetchpriority="high" />
-            <img src="/characters/Don_Burguer.png" alt="Don Burger, el jefe de la central con su bigote y cadena dorada" class="char char-1" fetchpriority="high" />
-            <img src="/characters/Papas_Flow.png" alt="Papas Flow, el más cool del barrio con sus lentes oscuros" class="char char-2" loading="eager" />
-            <img src="/characters/Ally Wing.png" alt="Alita Wing, la reina de las alitas con su chaqueta y flow" class="char char-3" loading="eager" />
-            <img src="/characters/Tano_Banano.png" alt="Tano Banano, el dulce de la banda con rastas y jersey" class="char char-4" loading="eager" />
+            <img 
+                src="/burger.png" 
+                alt="Hamburguesa gigante de Central de Hamburguesas" 
+                class="hero-burger" 
+                fetchpriority="high" 
+            />
         </div>
     </div>
     <div class="hero-wave" aria-hidden="true">
@@ -55,8 +57,8 @@
         width: 100%;
         height: 100%;
         background-image:
-            radial-gradient(circle at 20% 50%, rgba(255, 193, 7, 0.03) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(255, 61, 0, 0.03) 0%, transparent 50%),
+            radial-gradient(circle at 20% 50%, rgba(255, 140, 0, 0.04) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 100, 0, 0.04) 0%, transparent 50%),
             repeating-linear-gradient(
                 45deg,
                 transparent,
@@ -71,20 +73,41 @@
         position: relative;
         z-index: 1;
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 0;
         align-items: center;
         width: 100%;
     }
 
+    .hero-text {
+        position: relative;
+        z-index: 2;
+        padding-right: 0;
+        margin-right: -120px;
+    }
+
     .hero-title {
         font-family: var(--font-display);
-        font-size: 6rem;
-        line-height: 1;
+        line-height: 0.95;
         letter-spacing: 2px;
         text-transform: uppercase;
         margin-bottom: 1.5rem;
         text-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+    }
+
+    .hero-brand {
+        display: block;
+        font-size: 3.5rem;
+        color: #FF6600;
+        text-shadow: 3px 3px 0px rgba(0,0,0,0.6);
+        margin-bottom: 0.3rem;
+    }
+
+    .hero-tagline {
+        display: block;
+        font-size: 6rem;
+        color: var(--color-text);
+        text-shadow: 4px 4px 0px rgba(0,0,0,0.6);
     }
 
     .hero-subtitle {
@@ -139,44 +162,22 @@
 
     .hero-characters {
         position: relative;
-        height: 500px;
+        height: 700px;
         width: 100%;
-    }
-
-    .hero-crew {
-        position: absolute;
-        width: 280px;
-        height: auto;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 0.25;
-        filter: drop-shadow(0 0 40px rgba(255, 193, 7, 0.15));
-        z-index: 0;
-    }
-
-    .char {
-        position: absolute;
-        width: 180px;
-        height: auto;
-        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
-        transition: transform 0.3s ease;
         z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    .char:hover {
-        transform: scale(1.1) rotate(5deg);
-    }
-
-    .char-1 { top: 10%; left: 10%; animation: float 4s ease-in-out infinite; }
-    .char-2 { top: 40%; right: 10%; animation: float 5s ease-in-out infinite 1s; }
-    .char-3 { bottom: 10%; left: 30%; animation: float 6s ease-in-out infinite 2s; }
-    .char-4 { top: 5%; right: 30%; animation: float 4.5s ease-in-out infinite 0.5s; }
-
-    @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-20px); }
-        100% { transform: translateY(0px); }
+    .hero-burger {
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+        height: auto;
+        transform: scaleX(-1) scale(1.25);
+        filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+        object-fit: contain;
     }
 
     .hero-wave {
@@ -216,7 +217,16 @@
             gap: 2rem;
         }
 
-        .hero-title {
+        .hero-text {
+            margin-right: 0;
+            order: 1;
+        }
+
+        .hero-brand {
+            font-size: 2.5rem;
+        }
+
+        .hero-tagline {
             font-size: 4rem;
         }
 
@@ -230,25 +240,17 @@
         }
 
         .hero-characters {
-            height: 300px;
+            height: 450px;
             order: -1;
-        }
-
-        .char {
-            width: 120px;
-        }
-
-        .hero-crew {
-            width: 180px;
-        }
-
-        .scroll-indicator {
-            bottom: 5rem;
         }
     }
 
     @media (max-width: 480px) {
-        .hero-title {
+        .hero-brand {
+            font-size: 2rem;
+        }
+
+        .hero-tagline {
             font-size: 3rem;
         }
 
@@ -257,12 +259,8 @@
             font-size: 0.9rem;
         }
 
-        .char {
-            width: 100px;
-        }
-
-        .hero-crew {
-            width: 140px;
+        .hero-characters {
+            height: 380px;
         }
     }
 </style>
