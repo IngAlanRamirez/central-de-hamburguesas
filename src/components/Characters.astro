@@ -1,0 +1,149 @@
+---
+// filepath: /Users/aramirez/Projects/central-de-hamburguesas/src/components/Characters.astro
+---
+
+<section id="personajes" class="characters-section">
+    <div class="container">
+        <div class="section-header scroll-hidden">
+            <h2 class="section-title">Conoce a la <span class="text-gradient">Banda</span></h2>
+            <p class="section-subtitle">Cada uno tiene su estilo, pero todos traen el mejor sabor.</p>
+        </div>
+
+        <div class="characters-grid">
+            <div class="character-card scroll-hidden">
+                <div class="character-image-wrapper">
+                    <img src="/characters/Don_Burguer.png" alt="Don Burger" />
+                </div>
+                <div class="character-info">
+                    <h3>Don Burger</h3>
+                    <p>El jefe de la central. Con su bigote y su cadena de oro, manda en el sabor. Si quieres una burger con actitud, él la cocina.</p>
+                </div>
+            </div>
+
+            <div class="character-card scroll-hidden">
+                <div class="character-image-wrapper">
+                    <img src="/characters/Papas_Flow.png" alt="Papas Flow" />
+                </div>
+                <div class="character-info">
+                    <h3>Papas Flow</h3>
+                    <p>El más cool del barrio. Con sus lentes oscuros y su cadena, sabe cómo hacer las papas más crujientes y con el mejor estilo.</p>
+                </div>
+            </div>
+
+            <div class="character-card scroll-hidden">
+                <div class="character-image-wrapper">
+                    <img src="/characters/Ally Wing.png" alt="Alita Wing" />
+                </div>
+                <div class="character-info">
+                    <h3>Alita Wing</h3>
+                    <p>La reina de las alitas. Con su chaqueta y su flow, te lleva al cielo con cada bocado. ¡Sus alitas son pura leyenda!</p>
+                </div>
+            </div>
+
+            <div class="character-card scroll-hidden">
+                <div class="character-image-wrapper">
+                    <img src="/characters/Tano_Banano.png" alt="Tano Banano" />
+                </div>
+                <div class="character-info">
+                    <h3>Tano Banano</h3>
+                    <p>El dulce de la banda. Con sus rastas y su jersey, convierte los plátanos fritos en una experiencia urbana y deliciosa.</p>
+                </div>
+            </div>
+
+            <div class="character-card scroll-hidden">
+                <div class="character-image-wrapper">
+                    <img src="/characters/Crepa_Coqueta.png" alt="La Crepita" />
+                </div>
+                <div class="character-info">
+                    <h3>La Crepita</h3>
+                    <p>La más dulce y con estilo. Sus crepas son obras de arte, y ella lo sabe. Siempre con la moda en punto y el sabor en su lugar.</p>
+                </div>
+            </div>
+
+            <div class="character-card scroll-hidden">
+                <div class="character-image-wrapper">
+                    <img src="/characters/Bonny_Less.png" alt="Bonny Less" />
+                </div>
+                <div class="character-info">
+                    <h3>Bonny Less</h3>
+                    <p>La rebelde con causa. Le encanta el picante y no le teme a nada. Si buscas boneless con actitud, ella te los prepara con todo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .characters-section {
+        padding: 6rem 0;
+        background: linear-gradient(to bottom, #1a1a1a, var(--color-bg));
+    }
+
+    .characters-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+    }
+
+    .character-card {
+        background: var(--color-surface);
+        border-radius: 20px;
+        overflow: hidden;
+        border: 2px solid #333;
+        transition: transform 0.3s, border-color 0.3s;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .character-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--color-primary);
+    }
+
+    .character-image-wrapper {
+        height: 300px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        background: radial-gradient(circle at center, #333 0%, transparent 70%);
+        padding-top: 2rem;
+    }
+
+    .character-image-wrapper img {
+        max-height: 100%;
+        width: auto;
+        transition: transform 0.3s;
+    }
+
+    .character-card:hover .character-image-wrapper img {
+        transform: scale(1.1);
+    }
+
+    .character-info {
+        padding: 2rem;
+        text-align: center;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .character-info h3 {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        color: var(--color-primary);
+        margin-bottom: 1rem;
+    }
+
+    .character-info p {
+        color: var(--color-text-muted);
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+        .characters-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

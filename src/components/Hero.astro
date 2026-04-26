@@ -1,0 +1,194 @@
+---
+// filepath: /Users/aramirez/Projects/central-de-hamburguesas/src/components/Hero.astro
+---
+
+<section id="inicio" class="hero">
+    <div class="hero-background"></div>
+    <div class="container hero-content">
+        <div class="hero-text">
+            <h1 class="hero-title">
+                SABOR QUE <span class="text-gradient">MANDA</span>
+            </h1>
+            <p class="hero-subtitle">
+                La central del sabor urbano. Hamburguesas, boneless, hot dogs y más. 
+                ¡Directo a tu puerta con la actitud que nos caracteriza!
+            </p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">Ver Menú</a>
+                <a href="https://wa.me/5215519082651" target="_blank" class="btn btn-secondary">Pedir por WhatsApp</a>
+            </div>
+        </div>
+        <div class="hero-characters">
+            <img src="/characters/Don_Burguer.png" alt="Don Burger" class="char char-1" />
+            <img src="/characters/Papas_Flow.png" alt="Papas Flow" class="char char-2" />
+            <img src="/characters/Ally Wing.png" alt="Alita Wing" class="char char-3" />
+            <img src="/characters/Tano_Banano.png" alt="Tano Banano" class="char char-4" />
+        </div>
+    </div>
+    <div class="hero-wave">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#121212"/>
+        </svg>
+    </div>
+</section>
+
+<style>
+    .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding-top: 80px;
+        background: radial-gradient(circle at 50% 50%, #2a2a2a 0%, #121212 100%);
+    }
+
+    .hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/pattern.svg'); /* Patrón sutil de graffiti o textura */
+        opacity: 0.05;
+        z-index: 0;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+        width: 100%;
+    }
+
+    .hero-title {
+        font-family: var(--font-display);
+        font-size: 6rem;
+        line-height: 1;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        text-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+    }
+
+    .hero-subtitle {
+        font-size: 1.25rem;
+        color: var(--color-text-muted);
+        margin-bottom: 2.5rem;
+        max-width: 500px;
+        line-height: 1.6;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 1rem;
+    }
+
+    .btn {
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    .btn-primary {
+        background-color: var(--color-primary);
+        color: var(--color-bg);
+        box-shadow: 0 4px 20px rgba(255, 193, 7, 0.4);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(255, 193, 7, 0.6);
+    }
+
+    .btn-secondary {
+        background-color: transparent;
+        color: var(--color-text);
+        border: 2px solid var(--color-secondary);
+    }
+
+    .btn-secondary:hover {
+        background-color: var(--color-secondary);
+        color: white;
+        transform: translateY(-3px);
+    }
+
+    .hero-characters {
+        position: relative;
+        height: 500px;
+        width: 100%;
+    }
+
+    .char {
+        position: absolute;
+        width: 180px;
+        height: auto;
+        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+        transition: transform 0.3s ease;
+    }
+
+    .char:hover {
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    .char-1 { top: 10%; left: 10%; animation: float 4s ease-in-out infinite; }
+    .char-2 { top: 40%; right: 10%; animation: float 5s ease-in-out infinite 1s; }
+    .char-3 { bottom: 10%; left: 30%; animation: float 6s ease-in-out infinite 2s; }
+    .char-4 { top: 5%; right: 30%; animation: float 4.5s ease-in-out infinite 0.5s; }
+
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
+    }
+
+    .hero-wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        line-height: 0;
+        z-index: 2;
+    }
+
+    @media (max-width: 968px) {
+        .hero-content {
+            grid-template-columns: 1fr;
+            text-align: center;
+            gap: 2rem;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+        }
+
+        .hero-subtitle {
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-buttons {
+            justify-content: center;
+        }
+
+        .hero-characters {
+            height: 300px;
+            order: -1;
+        }
+
+        .char {
+            width: 120px;
+        }
+    }
+</style>

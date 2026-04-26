@@ -1,0 +1,27 @@
+---
+// filepath: /Users/aramirez/Projects/central-de-hamburguesas/src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import Combos from '../components/Combos.astro';
+import Menu from '../components/Menu.astro';
+import Characters from '../components/Characters.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Central de Hamburguesas | Sabor Urbano">
+    <Navbar />
+    <main>
+        <Hero />
+        <Combos />
+        <Menu />
+        <Characters />
+    </main>
+    <Footer />
+</Layout>
+
+<style>
+    main {
+        overflow-x: hidden;
+    }
+</style>

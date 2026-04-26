@@ -1,0 +1,163 @@
+---
+// filepath: /Users/aramirez/Projects/central-de-hamburguesas/src/components/Menu.astro
+---
+
+<section id="menu" class="menu-section">
+    <div class="container">
+        <div class="section-header scroll-hidden">
+            <h2 class="section-title">El <span class="text-gradient">Menú</span></h2>
+            <p class="section-subtitle">Explora nuestra variedad. ¡Hay para todos los gustos!</p>
+        </div>
+
+        <div class="menu-tabs scroll-hidden">
+            <button class="tab-btn active" data-tab="hamburguesas">Hamburguesas</button>
+            <button class="tab-btn" data-tab="boneless">Boneless</button>
+            <button class="tab-btn" data-tab="hotdogs">Hot Dogs</button>
+            <button class="tab-btn" data-tab="crepas">Crepas</button>
+            <button class="tab-btn" data-tab="platano">Plátanos</button>
+            <button class="tab-btn" data-tab="alitas">Alitas</button>
+            <button class="tab-btn" data-tab="papas">Papas</button>
+        </div>
+
+        <div class="menu-content">
+            <div id="hamburguesas" class="tab-content active">
+                <div class="menu-image-container">
+                    <img src="/menu/burgers.jpeg" alt="Menú de Hamburguesas" loading="lazy" />
+                </div>
+            </div>
+            <div id="boneless" class="tab-content">
+                <div class="menu-image-container">
+                    <img src="/menu/boneless.jpeg" alt="Menú de Boneless" loading="lazy" />
+                </div>
+            </div>
+            <div id="hotdogs" class="tab-content">
+                <div class="menu-image-container">
+                    <img src="/menu/hot_dogs.jpeg" alt="Menú de Hot Dogs" loading="lazy" />
+                </div>
+            </div>
+            <div id="crepas" class="tab-content">
+                <div class="menu-image-container">
+                    <img src="/menu/crepas.jpeg" alt="Menú de Crepas" loading="lazy" />
+                </div>
+            </div>
+            <div id="platano" class="tab-content">
+                <div class="menu-image-container">
+                    <img src="/menu/platanos.jpeg" alt="Menú de Plátanos" loading="lazy" />
+                </div>
+            </div>
+            <div id="alitas" class="tab-content">
+                <div class="menu-image-container">
+                    <img src="/menu/wings.jpeg" alt="Menú de Alitas" loading="lazy" />
+                </div>
+            </div>
+            <div id="papas" class="tab-content">
+                <div class="menu-image-container">
+                    <img src="/menu/papas_fritas.jpeg" alt="Menú de Papas Fritas" loading="lazy" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons and contents
+            tabBtns.forEach(b => b.classList.remove('active'));
+            tabContents.forEach(c => c.classList.remove('active'));
+
+            // Add active class to clicked button
+            btn.classList.add('active');
+
+            // Show corresponding content
+            const tabId = btn.getAttribute('data-tab');
+            const activeContent = document.getElementById(tabId);
+            if (activeContent) {
+                activeContent.classList.add('active');
+            }
+        });
+    });
+</script>
+
+<style>
+    .menu-section {
+        padding: 6rem 0;
+        background-color: var(--color-bg);
+    }
+
+    .menu-tabs {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-bottom: 3rem;
+    }
+
+    .tab-btn {
+        padding: 0.75rem 1.5rem;
+        background: var(--color-surface);
+        border: 2px solid transparent;
+        color: var(--color-text);
+        border-radius: 50px;
+        cursor: pointer;
+        font-family: var(--font-body);
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+
+    .tab-btn:hover {
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+    }
+
+    .tab-btn.active {
+        background: var(--color-primary);
+        color: var(--color-bg);
+        border-color: var(--color-primary);
+    }
+
+    .tab-content {
+        display: none;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    .menu-image-container {
+        background: var(--color-surface);
+        padding: 2rem;
+        border-radius: 20px;
+        border: 2px solid #333;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        text-align: center;
+    }
+
+    .menu-image-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+        .menu-tabs {
+            gap: 0.5rem;
+        }
+        .tab-btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+        }
+    }
+</style>

@@ -1,0 +1,238 @@
+---
+// filepath: /Users/aramirez/Projects/central-de-hamburguesas/src/components/Combos.astro
+---
+
+<section id="combos" class="combos">
+    <div class="container">
+        <div class="section-header scroll-hidden">
+            <h2 class="section-title">Combos <span class="text-gradient">Power</span></h2>
+            <p class="section-subtitle">Los favoritos de la banda. ¡Los combos que más la rompen!</p>
+        </div>
+
+        <div class="combos-grid">
+            <!-- Combo 1 -->
+            <div class="combo-card scroll-hidden">
+                <div class="combo-icon">⚡</div>
+                <h3 class="combo-name">Combo Clásico</h3>
+                <div class="combo-items">
+                    <span>🍔 Hamburguesa</span>
+                    <span>+</span>
+                    <span>🍟 Papas</span>
+                </div>
+                <div class="combo-price">$100</div>
+                <a href="https://wa.me/5215519082651?text=Hola!%20Quiero%20ordenar%20el%20Combo%20Clásico" target="_blank" class="combo-btn">Ordenar</a>
+            </div>
+
+            <!-- Combo 2 -->
+            <div class="combo-card featured scroll-hidden">
+                <div class="combo-badge">Más Vendido</div>
+                <div class="combo-icon">🔥</div>
+                <h3 class="combo-name">Combo Rápido</h3>
+                <div class="combo-items">
+                    <span>🌭 Hot Dog</span>
+                    <span>+</span>
+                    <span>🍟 Papas</span>
+                </div>
+                <div class="combo-price">$80</div>
+                <a href="https://wa.me/5215519082651?text=Hola!%20Quiero%20ordenar%20el%20Combo%20Rápido" target="_blank" class="combo-btn">Ordenar</a>
+            </div>
+
+            <!-- Combo 3 -->
+            <div class="combo-card scroll-hidden">
+                <div class="combo-icon">🍗</div>
+                <h3 class="combo-name">Combo Crunch</h3>
+                <div class="combo-items">
+                    <span>🍗 Boneless</span>
+                    <span>+</span>
+                    <span>🍟 Papas</span>
+                </div>
+                <div class="combo-price">$105</div>
+                <a href="https://wa.me/5215519082651?text=Hola!%20Quiero%20ordenar%20el%20Combo%20Crunch" target="_blank" class="combo-btn">Ordenar</a>
+            </div>
+
+            <!-- Combo 4 -->
+            <div class="combo-card scroll-hidden">
+                <div class="combo-icon">🍗</div>
+                <h3 class="combo-name">Combo Wings</h3>
+                <div class="combo-items">
+                    <span>🍗 Alitas</span>
+                    <span>+</span>
+                    <span>🍟 Papas</span>
+                </div>
+                <div class="combo-price">$110</div>
+                <a href="https://wa.me/5215519082651?text=Hola!%20Quiero%20ordenar%20el%20Combo%20Wings" target="_blank" class="combo-btn">Ordenar</a>
+            </div>
+
+            <!-- Combo 5 -->
+            <div class="combo-card scroll-hidden">
+                <div class="combo-icon">💣</div>
+                <h3 class="combo-name">Combo Power</h3>
+                <div class="combo-items">
+                    <span>🍔 Hamburguesa</span>
+                    <span>+</span>
+                    <span>🍗 Boneless</span>
+                </div>
+                <div class="combo-price">$135</div>
+                <a href="https://wa.me/5215519082651?text=Hola!%20Quiero%20ordenar%20el%20Combo%20Power" target="_blank" class="combo-btn">Ordenar</a>
+            </div>
+
+            <!-- Combo 6 -->
+            <div class="combo-card scroll-hidden">
+                <div class="combo-icon">🔥</div>
+                <h3 class="combo-name">Combo Mix</h3>
+                <div class="combo-items">
+                    <span>🌭 Hot Dog</span>
+                    <span>+</span>
+                    <span>🍗 Boneless</span>
+                </div>
+                <div class="combo-price">$110</div>
+                <a href="https://wa.me/5215519082651?text=Hola!%20Quiero%20ordenar%20el%20Combo%20Mix" target="_blank" class="combo-btn">Ordenar</a>
+            </div>
+
+            <!-- Combo 7 -->
+            <div class="combo-card scroll-hidden">
+                <div class="combo-icon">🍌</div>
+                <h3 class="combo-name">Combo Antojo Dulce</h3>
+                <div class="combo-items">
+                    <span>🍌 Plátanos fritos</span>
+                    <span>+</span>
+                    <span>🍟 Papas</span>
+                </div>
+                <div class="combo-price">$80</div>
+                <a href="https://wa.me/5215519082651?text=Hola!%20Quiero%20ordenar%20el%20Combo%20Antojo%20Dulce" target="_blank" class="combo-btn">Ordenar</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Simple scroll observer for animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('scroll-visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.scroll-hidden').forEach((el) => observer.observe(el));
+</script>
+
+<style>
+    .combos {
+        padding: 6rem 0;
+        background: linear-gradient(to bottom, var(--color-bg), #1a1a1a);
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-title {
+        font-family: var(--font-display);
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .section-subtitle {
+        font-size: 1.2rem;
+        color: var(--color-text-muted);
+    }
+
+    .combos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .combo-card {
+        background: var(--color-surface);
+        border-radius: 20px;
+        padding: 2.5rem 2rem;
+        text-align: center;
+        border: 2px solid transparent;
+        transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .combo-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--color-primary);
+        box-shadow: 0 15px 30px rgba(255, 193, 7, 0.2);
+    }
+
+    .combo-card.featured {
+        border-color: var(--color-secondary);
+        background: linear-gradient(135deg, #2a1a1a 0%, var(--color-surface) 100%);
+    }
+
+    .combo-badge {
+        position: absolute;
+        top: 15px;
+        right: -30px;
+        background: var(--color-secondary);
+        color: white;
+        padding: 5px 40px;
+        transform: rotate(45deg);
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .combo-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .combo-name {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        color: var(--color-primary);
+    }
+
+    .combo-items {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        font-size: 1.1rem;
+        flex-wrap: wrap;
+    }
+
+    .combo-price {
+        font-family: var(--font-display);
+        font-size: 3rem;
+        color: var(--color-secondary);
+        margin-bottom: 1.5rem;
+    }
+
+    .combo-btn {
+        display: inline-block;
+        padding: 0.75rem 2rem;
+        background: var(--color-primary);
+        color: var(--color-bg);
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 700;
+        text-transform: uppercase;
+        transition: background 0.3s, transform 0.2s;
+    }
+
+    .combo-btn:hover {
+        background: #fff;
+        transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+        .section-title {
+            font-size: 3rem;
+        }
+    }
+</style>
