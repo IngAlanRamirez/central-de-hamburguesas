@@ -2,7 +2,7 @@
 // filepath: /Users/aramirez/Projects/central-de-hamburguesas/src/components/Characters.astro
 ---
 
-<section id="personajes" class="characters-section">
+<section id="personajes" class="characters-section" aria-label="Personajes de la banda">
     <div class="container">
         <div class="section-header scroll-hidden">
             <h2 class="section-title">Conoce a la <span class="text-gradient">Banda</span></h2>
@@ -10,65 +10,75 @@
         </div>
 
         <div class="characters-grid">
-            <div class="character-card scroll-hidden">
+            <article class="character-card scroll-hidden">
                 <div class="character-image-wrapper">
-                    <img src="/characters/Don_Burguer.png" alt="Don Burger" />
+                    <img src="/characters/Don_Burguer.png" alt="Don Burger con su bigote y cadena de oro, el jefe de la central" loading="lazy" decoding="async" />
                 </div>
                 <div class="character-info">
                     <h3>Don Burger</h3>
-                    <p>El jefe de la central. Con su bigote y su cadena de oro, manda en el sabor. Si quieres una burger con actitud, él la cocina.</p>
+                    <p>El jefe de la central. Bigote de leyenda y cadena de oro imponente. Si quieres una burger con actitud, él la cocina como nadie.</p>
                 </div>
-            </div>
+            </article>
 
-            <div class="character-card scroll-hidden">
+            <article class="character-card scroll-hidden">
                 <div class="character-image-wrapper">
-                    <img src="/characters/Papas_Flow.png" alt="Papas Flow" />
+                    <img src="/characters/Papas_Flow.png" alt="Papas Flow con lentes oscuros y cadena, el más cool del barrio" loading="lazy" decoding="async" />
                 </div>
                 <div class="character-info">
                     <h3>Papas Flow</h3>
-                    <p>El más cool del barrio. Con sus lentes oscuros y su cadena, sabe cómo hacer las papas más crujientes y con el mejor estilo.</p>
+                    <p>El más flow del barrio. Lentes oscuros y cadena brillante, sus papas son crujientes por fuera y suaves por dentro. Puro estilo.</p>
                 </div>
-            </div>
+            </article>
 
-            <div class="character-card scroll-hidden">
+            <article class="character-card scroll-hidden">
                 <div class="character-image-wrapper">
-                    <img src="/characters/Ally Wing.png" alt="Alita Wing" />
+                    <img src="/characters/Ally Wing.png" alt="Alita Wing con chaqueta y actitud, la reina de las alitas" loading="lazy" decoding="async" />
                 </div>
                 <div class="character-info">
                     <h3>Alita Wing</h3>
-                    <p>La reina de las alitas. Con su chaqueta y su flow, te lleva al cielo con cada bocado. ¡Sus alitas son pura leyenda!</p>
+                    <p>La reina de las alitas. Chaqueta de cuero y flow imparable, te eleva al cielo con cada bocado picante. ¡Sus alitas son pura leyenda!</p>
                 </div>
-            </div>
+            </article>
 
-            <div class="character-card scroll-hidden">
+            <article class="character-card scroll-hidden">
                 <div class="character-image-wrapper">
-                    <img src="/characters/Tano_Banano.png" alt="Tano Banano" />
+                    <img src="/characters/Tano_Banano.png" alt="Tano Banano con rastas y jersey, el maestro de los plátanos fritos" loading="lazy" decoding="async" />
                 </div>
                 <div class="character-info">
                     <h3>Tano Banano</h3>
-                    <p>El dulce de la banda. Con sus rastas y su jersey, convierte los plátanos fritos en una experiencia urbana y deliciosa.</p>
+                    <p>El maestro del dulce urbano. Rastas distintivas y jersey vintage, transforma los plátanos fritos en una experiencia que rompe esquemas.</p>
                 </div>
-            </div>
+            </article>
 
-            <div class="character-card scroll-hidden">
+            <article class="character-card scroll-hidden">
                 <div class="character-image-wrapper">
-                    <img src="/characters/Crepa_Coqueta.png" alt="La Crepita" />
+                    <img src="/characters/Crepa_Coqueta.png" alt="La Crepita Coqueta, la más dulce y estilosa de la banda" loading="lazy" decoding="async" />
                 </div>
                 <div class="character-info">
                     <h3>La Crepita</h3>
-                    <p>La más dulce y con estilo. Sus crepas son obras de arte, y ella lo sabe. Siempre con la moda en punto y el sabor en su lugar.</p>
+                    <p>La más coqueta y estilosa. Sus crepas son obras de arte urbanas — siempre con la moda en punto y el sabor en su lugar. Dulzura con actitud.</p>
                 </div>
-            </div>
+            </article>
 
-            <div class="character-card scroll-hidden">
+            <article class="character-card scroll-hidden">
                 <div class="character-image-wrapper">
-                    <img src="/characters/Bonny_Less.png" alt="Bonny Less" />
+                    <img src="/characters/Bonny_Less.png" alt="Bonny Less, la rebelde picante, experta en boneless" loading="lazy" decoding="async" />
                 </div>
                 <div class="character-info">
                     <h3>Bonny Less</h3>
-                    <p>La rebelde con causa. Le encanta el picante y no le teme a nada. Si buscas boneless con actitud, ella te los prepara con todo.</p>
+                    <p>La rebelde con causa. No le teme al picante ni a nada. Si buscas boneless con actitud y fuego, ella te los prepara con todo el sabor.</p>
                 </div>
-            </div>
+            </article>
+
+            <article class="character-card scroll-hidden">
+                <div class="character-image-wrapper">
+                    <img src="/characters/Doggy.png" alt="Doggy, el fiel compañero callejero y maestro de los hot dogs" loading="lazy" decoding="async" />
+                </div>
+                <div class="character-info">
+                    <h3>Doggy</h3>
+                    <p>El perro más fiel de la calle. Con corbata y gafas, arma los hot dogs más brutales del barrio. Salchicha dorada, pan nube, actitud canalla.</p>
+                </div>
+            </article>
         </div>
     </div>
 </section>
@@ -77,12 +87,30 @@
     .characters-section {
         padding: 6rem 0;
         background: linear-gradient(to bottom, #1a1a1a, var(--color-bg));
+        position: relative;
+    }
+
+    .characters-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 50px,
+            rgba(255, 193, 7, 0.015) 50px,
+            rgba(255, 193, 7, 0.015) 51px
+        );
+        pointer-events: none;
     }
 
     .characters-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 3rem;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
     }
 
     .character-card {
@@ -101,12 +129,13 @@
     }
 
     .character-image-wrapper {
-        height: 300px;
+        height: 280px;
         display: flex;
         align-items: flex-end;
         justify-content: center;
         background: radial-gradient(circle at center, #333 0%, transparent 70%);
         padding-top: 2rem;
+        overflow: hidden;
     }
 
     .character-image-wrapper img {
@@ -120,7 +149,7 @@
     }
 
     .character-info {
-        padding: 2rem;
+        padding: 1.5rem 2rem 2rem;
         text-align: center;
         flex-grow: 1;
         display: flex;
@@ -130,9 +159,9 @@
 
     .character-info h3 {
         font-family: var(--font-display);
-        font-size: 2rem;
+        font-size: 1.8rem;
         color: var(--color-primary);
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
     }
 
     .character-info p {
@@ -143,7 +172,18 @@
 
     @media (max-width: 768px) {
         .characters-grid {
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .characters-grid {
             grid-template-columns: 1fr;
+        }
+
+        .character-image-wrapper {
+            height: 220px;
         }
     }
 </style>

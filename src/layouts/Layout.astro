@@ -2,21 +2,88 @@
 // filepath: /Users/aramirez/Projects/central-de-hamburguesas/src/layouts/Layout.astro
 export interface Props {
 	title: string;
+	description?: string;
 }
 
-const { title } = Astro.props;
+const { 
+	title, 
+	description = "Central de Hamburguesas — Sabor urbano y callejero. Las mejores hamburguesas, boneless, hot dogs, crepas y más. Pide a domicilio por WhatsApp." 
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://centraldehamburguesas.com');
+const currentYear = new Date().getFullYear();
 ---
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Central de Hamburguesas - Sabor urbano y callejero. Las mejores hamburguesas, boneless, hot dogs y más. ¡Pide a domicilio!">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <title>{title}</title>
+    <meta name="description" content={description}>
+    <meta name="keywords" content="hamburguesas, delivery, domicilio, boneless, hot dogs, crepas, alitas, papas fritas, comida callejera, sabor urbano, Central de Hamburguesas">
+    <meta name="author" content="Central de Hamburguesas">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href={canonicalURL.href} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL('/Logo.png', canonicalURL.origin).href} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content="Central de Hamburguesas" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL('/Logo.png', canonicalURL.origin).href} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/Logo.png" />
+    <link rel="apple-touch-icon" href="/Logo.png" />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Central de Hamburguesas",
+        "description": description,
+        "telephone": "+5215519082651",
+        "servesCuisine": "Hamburguesas",
+        "priceRange": "$$",
+        "url": canonicalURL.href,
+        "image": new URL('/Logo.png', canonicalURL.origin).href,
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "MX"
+        },
+        "hasMenu": {
+            "@type": "Menu",
+            "hasMenuSection": [
+                {
+                    "@type": "MenuSection",
+                    "name": "Combos",
+                    "hasMenuItem": [
+                        { "@type": "MenuItem", "name": "Combo Clásico", "description": "Hamburguesa + Papas", "offers": { "@type": "Offer", "price": "100", "priceCurrency": "MXN" } },
+                        { "@type": "MenuItem", "name": "Combo Rápido", "description": "Hot Dog + Papas", "offers": { "@type": "Offer", "price": "80", "priceCurrency": "MXN" } },
+                        { "@type": "MenuItem", "name": "Combo Crunch", "description": "Boneless + Papas", "offers": { "@type": "Offer", "price": "105", "priceCurrency": "MXN" } },
+                        { "@type": "MenuItem", "name": "Combo Wings", "description": "Alitas + Papas", "offers": { "@type": "Offer", "price": "110", "priceCurrency": "MXN" } },
+                        { "@type": "MenuItem", "name": "Combo Power", "description": "Hamburguesa + Boneless", "offers": { "@type": "Offer", "price": "135", "priceCurrency": "MXN" } },
+                        { "@type": "MenuItem", "name": "Combo Mix", "description": "Hot Dog + Boneless", "offers": { "@type": "Offer", "price": "110", "priceCurrency": "MXN" } },
+                        { "@type": "MenuItem", "name": "Combo Antojo Dulce", "description": "Plátanos fritos + Papas", "offers": { "@type": "Offer", "price": "80", "priceCurrency": "MXN" } }
+                    ]
+                }
+            ]
+        }
+    })} />
 </head>
 <body>
     <slot />
@@ -50,6 +117,17 @@ const { title } = Astro.props;
         background-color: var(--color-bg);
         color: var(--color-text);
         overflow-x: hidden;
+    }
+
+    .section-divider {
+        text-align: center;
+        padding: 0;
+        margin: -1rem 0;
+        font-size: 1.5rem;
+        opacity: 0.15;
+        letter-spacing: 1rem;
+        color: var(--color-primary);
+        user-select: none;
     }
 
     /* Animaciones de Scroll */

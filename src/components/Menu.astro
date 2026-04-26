@@ -2,57 +2,57 @@
 // filepath: /Users/aramirez/Projects/central-de-hamburguesas/src/components/Menu.astro
 ---
 
-<section id="menu" class="menu-section">
+<section id="menu" class="menu-section" aria-label="Menú de productos">
     <div class="container">
         <div class="section-header scroll-hidden">
             <h2 class="section-title">El <span class="text-gradient">Menú</span></h2>
             <p class="section-subtitle">Explora nuestra variedad. ¡Hay para todos los gustos!</p>
         </div>
 
-        <div class="menu-tabs scroll-hidden">
-            <button class="tab-btn active" data-tab="hamburguesas">Hamburguesas</button>
-            <button class="tab-btn" data-tab="boneless">Boneless</button>
-            <button class="tab-btn" data-tab="hotdogs">Hot Dogs</button>
-            <button class="tab-btn" data-tab="crepas">Crepas</button>
-            <button class="tab-btn" data-tab="platano">Plátanos</button>
-            <button class="tab-btn" data-tab="alitas">Alitas</button>
-            <button class="tab-btn" data-tab="papas">Papas</button>
+        <div class="menu-tabs scroll-hidden" role="tablist" aria-label="Categorías del menú">
+            <button class="tab-btn active" data-tab="hamburguesas" role="tab" aria-selected="true" aria-controls="hamburguesas">Hamburguesas</button>
+            <button class="tab-btn" data-tab="boneless" role="tab" aria-selected="false" aria-controls="boneless">Boneless</button>
+            <button class="tab-btn" data-tab="hotdogs" role="tab" aria-selected="false" aria-controls="hotdogs">Hot Dogs</button>
+            <button class="tab-btn" data-tab="crepas" role="tab" aria-selected="false" aria-controls="crepas">Crepas</button>
+            <button class="tab-btn" data-tab="platano" role="tab" aria-selected="false" aria-controls="platano">Plátanos</button>
+            <button class="tab-btn" data-tab="alitas" role="tab" aria-selected="false" aria-controls="alitas">Alitas</button>
+            <button class="tab-btn" data-tab="papas" role="tab" aria-selected="false" aria-controls="papas">Papas</button>
         </div>
 
         <div class="menu-content">
-            <div id="hamburguesas" class="tab-content active">
+            <div id="hamburguesas" class="tab-content active" role="tabpanel" aria-label="Menú de Hamburguesas">
                 <div class="menu-image-container">
-                    <img src="/menu/burgers.jpeg" alt="Menú de Hamburguesas" loading="lazy" />
+                    <img src="/menu/burgers.jpeg" alt="Menú de Hamburguesas — variedades y precios de hamburguesas" loading="lazy" decoding="async" />
                 </div>
             </div>
-            <div id="boneless" class="tab-content">
+            <div id="boneless" class="tab-content" role="tabpanel" aria-label="Menú de Boneless" hidden>
                 <div class="menu-image-container">
-                    <img src="/menu/boneless.jpeg" alt="Menú de Boneless" loading="lazy" />
+                    <img src="/menu/boneless.jpeg" alt="Menú de Boneless — variedades y precios de boneless" loading="lazy" decoding="async" />
                 </div>
             </div>
-            <div id="hotdogs" class="tab-content">
+            <div id="hotdogs" class="tab-content" role="tabpanel" aria-label="Menú de Hot Dogs" hidden>
                 <div class="menu-image-container">
-                    <img src="/menu/hot_dogs.jpeg" alt="Menú de Hot Dogs" loading="lazy" />
+                    <img src="/menu/hot_dogs.jpeg" alt="Menú de Hot Dogs — variedades y precios de hot dogs" loading="lazy" decoding="async" />
                 </div>
             </div>
-            <div id="crepas" class="tab-content">
+            <div id="crepas" class="tab-content" role="tabpanel" aria-label="Menú de Crepas" hidden>
                 <div class="menu-image-container">
-                    <img src="/menu/crepas.jpeg" alt="Menú de Crepas" loading="lazy" />
+                    <img src="/menu/crepas.jpeg" alt="Menú de Crepas — variedades y precios de crepas" loading="lazy" decoding="async" />
                 </div>
             </div>
-            <div id="platano" class="tab-content">
+            <div id="platano" class="tab-content" role="tabpanel" aria-label="Menú de Plátanos" hidden>
                 <div class="menu-image-container">
-                    <img src="/menu/platanos.jpeg" alt="Menú de Plátanos" loading="lazy" />
+                    <img src="/menu/platanos.jpeg" alt="Menú de Plátanos — variedades y precios de plátanos fritos" loading="lazy" decoding="async" />
                 </div>
             </div>
-            <div id="alitas" class="tab-content">
+            <div id="alitas" class="tab-content" role="tabpanel" aria-label="Menú de Alitas" hidden>
                 <div class="menu-image-container">
-                    <img src="/menu/wings.jpeg" alt="Menú de Alitas" loading="lazy" />
+                    <img src="/menu/wings.jpeg" alt="Menú de Alitas — variedades y precios de alitas" loading="lazy" decoding="async" />
                 </div>
             </div>
-            <div id="papas" class="tab-content">
+            <div id="papas" class="tab-content" role="tabpanel" aria-label="Menú de Papas" hidden>
                 <div class="menu-image-container">
-                    <img src="/menu/papas_fritas.jpeg" alt="Menú de Papas Fritas" loading="lazy" />
+                    <img src="/menu/papas_fritas.jpeg" alt="Menú de Papas Fritas — variedades y precios de papas" loading="lazy" decoding="async" />
                 </div>
             </div>
         </div>
@@ -65,18 +65,23 @@
 
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active class from all buttons and contents
-            tabBtns.forEach(b => b.classList.remove('active'));
-            tabContents.forEach(c => c.classList.remove('active'));
+            tabBtns.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-selected', 'false');
+            });
+            tabContents.forEach(c => {
+                c.classList.remove('active');
+                c.setAttribute('hidden', '');
+            });
 
-            // Add active class to clicked button
             btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
 
-            // Show corresponding content
             const tabId = btn.getAttribute('data-tab');
             const activeContent = document.getElementById(tabId);
             if (activeContent) {
                 activeContent.classList.add('active');
+                activeContent.removeAttribute('hidden');
             }
         });
     });
@@ -86,6 +91,19 @@
     .menu-section {
         padding: 6rem 0;
         background-color: var(--color-bg);
+        position: relative;
+    }
+
+    .menu-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 80% 20%, rgba(255, 61, 0, 0.03) 0%, transparent 50%),
+                    radial-gradient(circle at 20% 80%, rgba(255, 193, 7, 0.03) 0%, transparent 50%);
+        pointer-events: none;
     }
 
     .menu-tabs {
@@ -108,6 +126,7 @@
         text-transform: uppercase;
         font-size: 0.9rem;
         transition: all 0.3s ease;
+        position: relative;
     }
 
     .tab-btn:hover {
@@ -115,10 +134,16 @@
         color: var(--color-primary);
     }
 
+    .tab-btn:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 2px;
+    }
+
     .tab-btn.active {
         background: var(--color-primary);
         color: var(--color-bg);
         border-color: var(--color-primary);
+        box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
     }
 
     .tab-content {
@@ -137,6 +162,11 @@
         border: 2px solid #333;
         box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         text-align: center;
+        transition: border-color 0.3s;
+    }
+
+    .menu-image-container:hover {
+        border-color: var(--color-primary);
     }
 
     .menu-image-container img {
@@ -144,6 +174,11 @@
         height: auto;
         border-radius: 10px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease;
+    }
+
+    .menu-image-container:hover img {
+        transform: scale(1.02);
     }
 
     @keyframes fadeIn {
@@ -158,6 +193,16 @@
         .tab-btn {
             padding: 0.5rem 1rem;
             font-size: 0.8rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .menu-tabs {
+            gap: 0.4rem;
+        }
+        .tab-btn {
+            padding: 0.4rem 0.75rem;
+            font-size: 0.7rem;
         }
     }
 </style>

@@ -2,22 +2,22 @@
 // filepath: /Users/aramirez/Projects/central-de-hamburguesas/src/components/Navbar.astro
 ---
 
-<nav class="navbar">
+<nav class="navbar" role="navigation" aria-label="Navegación principal">
     <div class="container nav-container">
-        <div class="logo">
-            <img src="/Logo.png" alt="Central de Hamburguesas Logo" />
-        </div>
-        <ul class="nav-links">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#combos">Combos</a></li>
-            <li><a href="#menu">Menú</a></li>
-            <li><a href="#personajes">La Banda</a></li>
-            <li><a href="#contacto" class="nav-cta">Pedir Ahora</a></li>
+        <a href="#inicio" class="logo" aria-label="Ir al inicio de Central de Hamburguesas">
+            <img src="/Logo.png" alt="Logo de Central de Hamburguesas" width="60" height="60" />
+        </a>
+        <ul class="nav-links" role="menubar">
+            <li role="none"><a href="#inicio" role="menuitem">Inicio</a></li>
+            <li role="none"><a href="#combos" role="menuitem">Combos</a></li>
+            <li role="none"><a href="#menu" role="menuitem">Menú</a></li>
+            <li role="none"><a href="#personajes" role="menuitem">La Banda</a></li>
+            <li role="none"><a href="#contacto" class="nav-cta" role="menuitem">Pedir Ahora</a></li>
         </ul>
-        <button class="mobile-menu-btn" aria-label="Abrir menú">
-            <span></span>
-            <span></span>
-            <span></span>
+        <button class="mobile-menu-btn" aria-label="Abrir menú de navegación" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
         </button>
     </div>
 </nav>
@@ -29,6 +29,8 @@
     mobileBtn?.addEventListener('click', () => {
         navLinks?.classList.toggle('active');
         mobileBtn?.classList.toggle('open');
+        const isOpen = mobileBtn?.classList.contains('open');
+        mobileBtn?.setAttribute('aria-expanded', String(isOpen));
     });
 
     // Smooth scroll for anchor links
@@ -64,6 +66,12 @@
         align-items: center;
     }
 
+    .logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+
     .logo img {
         height: 60px;
         width: auto;
@@ -75,6 +83,8 @@
         list-style: none;
         gap: 2rem;
         align-items: center;
+        margin: 0;
+        padding: 0;
     }
 
     .nav-links a {

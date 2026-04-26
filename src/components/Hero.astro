@@ -2,8 +2,8 @@
 // filepath: /Users/aramirez/Projects/central-de-hamburguesas/src/components/Hero.astro
 ---
 
-<section id="inicio" class="hero">
-    <div class="hero-background"></div>
+<section id="inicio" class="hero" aria-label="Sección principal de Central de Hamburguesas">
+    <div class="hero-background" aria-hidden="true"></div>
     <div class="container hero-content">
         <div class="hero-text">
             <h1 class="hero-title">
@@ -15,21 +15,25 @@
             </p>
             <div class="hero-buttons">
                 <a href="#menu" class="btn btn-primary">Ver Menú</a>
-                <a href="https://wa.me/5215519082651" target="_blank" class="btn btn-secondary">Pedir por WhatsApp</a>
+                <a href="https://wa.me/5215519082651" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">Pedir por WhatsApp</a>
             </div>
         </div>
         <div class="hero-characters">
-            <img src="/characters/Don_Burguer.png" alt="Don Burger" class="char char-1" />
-            <img src="/characters/Papas_Flow.png" alt="Papas Flow" class="char char-2" />
-            <img src="/characters/Ally Wing.png" alt="Alita Wing" class="char char-3" />
-            <img src="/characters/Tano_Banano.png" alt="Tano Banano" class="char char-4" />
+            <img src="/characters/The_Crew.png" alt="La banda completa de Central de Hamburguesas, todos los personajes del sabor urbano juntos" class="hero-crew" fetchpriority="high" />
+            <img src="/characters/Don_Burguer.png" alt="Don Burger, el jefe de la central con su bigote y cadena dorada" class="char char-1" fetchpriority="high" />
+            <img src="/characters/Papas_Flow.png" alt="Papas Flow, el más cool del barrio con sus lentes oscuros" class="char char-2" loading="eager" />
+            <img src="/characters/Ally Wing.png" alt="Alita Wing, la reina de las alitas con su chaqueta y flow" class="char char-3" loading="eager" />
+            <img src="/characters/Tano_Banano.png" alt="Tano Banano, el dulce de la banda con rastas y jersey" class="char char-4" loading="eager" />
         </div>
     </div>
-    <div class="hero-wave">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="hero-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#121212"/>
         </svg>
     </div>
+    <a href="#combos" class="scroll-indicator" aria-label="Desplázate hacia abajo para ver los combos">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+    </a>
 </section>
 
 <style>
@@ -50,8 +54,16 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('/pattern.svg'); /* Patrón sutil de graffiti o textura */
-        opacity: 0.05;
+        background-image:
+            radial-gradient(circle at 20% 50%, rgba(255, 193, 7, 0.03) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 61, 0, 0.03) 0%, transparent 50%),
+            repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 40px,
+                rgba(255, 255, 255, 0.01) 40px,
+                rgba(255, 255, 255, 0.01) 41px
+            );
         z-index: 0;
     }
 
@@ -131,12 +143,25 @@
         width: 100%;
     }
 
+    .hero-crew {
+        position: absolute;
+        width: 280px;
+        height: auto;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.25;
+        filter: drop-shadow(0 0 40px rgba(255, 193, 7, 0.15));
+        z-index: 0;
+    }
+
     .char {
         position: absolute;
         width: 180px;
         height: auto;
         filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
         transition: transform 0.3s ease;
+        z-index: 1;
     }
 
     .char:hover {
@@ -163,6 +188,27 @@
         z-index: 2;
     }
 
+    .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        color: var(--color-primary);
+        animation: bounce 2s ease-in-out infinite;
+        opacity: 0.7;
+        transition: opacity 0.3s;
+    }
+
+    .scroll-indicator:hover {
+        opacity: 1;
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateX(-50%) translateY(0); }
+        50% { transform: translateX(-50%) translateY(10px); }
+    }
+
     @media (max-width: 968px) {
         .hero-content {
             grid-template-columns: 1fr;
@@ -180,6 +226,7 @@
 
         .hero-buttons {
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .hero-characters {
@@ -189,6 +236,33 @@
 
         .char {
             width: 120px;
+        }
+
+        .hero-crew {
+            width: 180px;
+        }
+
+        .scroll-indicator {
+            bottom: 5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hero-title {
+            font-size: 3rem;
+        }
+
+        .btn {
+            padding: 0.85rem 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .char {
+            width: 100px;
+        }
+
+        .hero-crew {
+            width: 140px;
         }
     }
 </style>
