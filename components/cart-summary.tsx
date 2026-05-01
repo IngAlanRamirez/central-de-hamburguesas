@@ -8,11 +8,13 @@ export function CartSummary() {
   const items = useCartStore((state) => state.items)
   const totalPrice = useCartStore((state) => state.totalPrice())
   const closeCart = useCartStore((state) => state.closeCart)
+  const clearCart = useCartStore((state) => state.clearCart)
   
   const handleWhatsApp = () => {
     const message = generateWhatsAppMessage(items)
     const url = `https://wa.me/5215519082651?text=${encodeURIComponent(message)}`
     window.open(url, '_blank')
+    clearCart()
     closeCart()
   }
   
