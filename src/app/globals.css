@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Dark mode variant para Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Colors */
   --color-primary: #C41E3A;
@@ -24,14 +27,52 @@
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Light theme (default) */
 :root {
   --color-primary: #C41E3A;
+  --color-primary-hover: #D42A45;
   --color-secondary: #D4A84B;
   --color-accent: #2D2D2D;
   --color-cream: #FDF6E3;
   --color-cream-dark: #F5ECD3;
   --color-text: #1A1A1A;
   --color-text-muted: #666666;
+  --color-bg-overlay: rgba(0, 0, 0, 0.4);
+  --noise-opacity: 0.02;
+
+  color-scheme: light;
+}
+
+/* Dark theme */
+:root.dark {
+  --color-primary: #E84444;
+  --color-primary-hover: #FF5555;
+  --color-secondary: #D4A84B;
+  --color-accent: #E8E8E8;
+  --color-cream: #0F0F0F;
+  --color-cream-dark: #1A1A1A;
+  --color-text: #E8E8E8;
+  --color-text-muted: #888888;
+  --color-bg-overlay: rgba(0, 0, 0, 0.7);
+  --noise-opacity: 0.04;
+
+  color-scheme: dark;
+}
+
+/* Transición suave global para cambio de tema */
+*,
+*::before,
+*::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Excluir transiciones de animaciones y hover para no afectar performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
 }
 
 @layer base {
@@ -160,7 +201,7 @@ body::after {
   content: '';
   position: fixed;
   inset: 0;
-  opacity: 0.02;
+  opacity: var(--noise-opacity, 0.02);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 9999;

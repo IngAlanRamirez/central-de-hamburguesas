@@ -5,7 +5,7 @@ import { AnimateOnScroll } from '@/components/ui/animate-on-scroll'
 
 export default function Footer() {
   return (
-    <footer className="bg-accent text-cream">
+    <footer className="bg-accent text-cream dark:bg-[#0A0A0A] dark:text-text">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Col 1: Logo + tagline */}

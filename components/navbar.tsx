@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { cn } from '@/lib/utils'
 import { useCartStore } from '@/lib/store/cart'
 import { Menu, X, ShoppingCart } from 'lucide-react'
@@ -94,6 +95,7 @@ export default function Navbar() {
                 )}
               </AnimatePresence>
             </button>
+            <ThemeToggle />
             <div className="relative">
               <div className="animate-pulse-ring pointer-events-none absolute inset-0 rounded-full" />
               <Button href="https://wa.me/5215519082651" variant="primary" size="sm">
@@ -119,7 +121,7 @@ export default function Navbar() {
           <>
             <motion.div
               key="mobile-backdrop"
-              className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm"
+              className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm dark:bg-black/70"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -171,6 +173,7 @@ export default function Navbar() {
                     )}
                   </AnimatePresence>
                 </button>
+                <ThemeToggle className="ml-auto" />
                 <Button
                   href="https://wa.me/5215519082651"
                   variant="primary"
