@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Anton, DM_Sans, Space_Mono } from 'next/font/google'
+import { CartDrawer } from '@/components/cart-drawer'
 import './globals.css'
 
 const anton = Anton({
@@ -43,7 +44,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className={`${anton.variable} ${dmSans.variable} ${spaceMono.variable}`}>
-      <body className="font-body bg-cream text-accent antialiased">{children}</body>
+      <body className="font-body bg-cream text-accent antialiased">
+        {children}
+        <CartDrawer />
+      </body>
     </html>
   )
 }

@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { Menu, X } from 'lucide-react'
+import { useCartStore } from '@/lib/store/cart'
+import { Menu, X, ShoppingCart } from 'lucide-react'
 
 const navLinks = [
   { label: 'Inicio', href: '#' },
@@ -16,6 +17,8 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const totalItems = useCartStore((state) => state.totalItems())
+  const openCart = useCartStore((state) => state.openCart)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50)
@@ -64,6 +67,19 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            {/* Cart Icon */}
+            <button
+              onClick={openCart}
+              className="relative p-2 text-text transition-colors hover:text-primary"
+              aria-label={`Carrito, ${totalItems} ${totalItems === 1 ? 'item' : 'items'}`}
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {totalItems > 0 && (
+                <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold text-white">
+                  {totalItems}
+                </span>
+              )}
+            </button>
             <div className="relative">
               <div className="animate-pulse-ring pointer-events-none absolute inset-0 rounded-full" />
               <Button href="https://wa.me/5215519082651" variant="primary" size="sm">
@@ -108,6 +124,21 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
+              <button
+                onClick={() => {
+                  openCart()
+                  setMobileOpen(false)
+                }}
+                className="flex items-center gap-3 font-body text-lg font-medium text-text transition-colors hover:text-primary"
+              >
+                <ShoppingCart className="h-5 w-5" />
+                Carrito
+                {totalItems > 0 && (
+                  <span className="ml-auto flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-primary px-1.5 text-xs font-bold text-white">
+                    {totalItems}
+                  </span>
+                )}
+              </button>
               <Button
                 href="https://wa.me/5215519082651"
                 variant="primary"
