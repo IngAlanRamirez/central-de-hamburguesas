@@ -36,3 +36,25 @@ pnpm-debug.log*
 *.pyc
 __pycache__/
 *.pyo
+
+# Python test/recon scripts (development only)
+scripts/*.py
+verify_*.py
+recon_*.py
+recon*.py
+check_error.py
+test_*.py
+retake_*.py
+
+# Next.js build output
+.next/
+
+# TypeScript build info
+tsconfig.tsbuildinfo
+
+# Screenshots
+screenshots/
+
+# IDE
+*.swp
+*.swo
