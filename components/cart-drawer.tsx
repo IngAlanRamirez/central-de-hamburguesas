@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { motion } from 'framer-motion'
 import { useCartStore } from '@/lib/store/cart'
 import { CartItem } from '@/components/cart-item'
 import { CartSummary } from '@/components/cart-summary'
@@ -11,7 +12,7 @@ export function CartDrawer() {
   const closeCart = useCartStore((state) => state.closeCart)
   const items = useCartStore((state) => state.items)
   const totalItems = useCartStore((state) => state.totalItems())
-  
+
   // Close on Escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -19,11 +20,11 @@ export function CartDrawer() {
         closeCart()
       }
     }
-    
+
     document.addEventListener('keydown', handleEscape)
     return () => document.removeEventListener('keydown', handleEscape)
   }, [isOpen, closeCart])
-  
+
   // Prevent body scroll when drawer is open
   useEffect(() => {
     if (isOpen) {
@@ -31,28 +32,31 @@ export function CartDrawer() {
     } else {
       document.body.style.overflow = 'unset'
     }
-    
+
     return () => {
       document.body.style.overflow = 'unset'
     }
   }, [isOpen])
-  
+
   return (
     <>
       {/* Backdrop */}
-      <div
-        className={`fixed inset-0 bg-black/70 backdrop-blur-sm z-[1998] transition-all duration-300 ${
-          isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-        }`}
+      <motion.div
+        className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[1998]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isOpen ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
         onClick={closeCart}
         aria-hidden="true"
+        style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
       />
-      
+
       {/* Drawer */}
-      <aside
-        className={`fixed right-0 top-0 z-[1999] h-full w-full max-w-md bg-cream shadow-2xl transition-transform duration-300 ease-out ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+      <motion.aside
+        className="fixed right-0 top-0 z-[1999] h-full w-full max-w-md bg-cream shadow-2xl"
+        initial={{ x: '100%' }}
+        animate={{ x: isOpen ? 0 : '100%' }}
+        transition={{ type: 'spring', damping: 30, stiffness: 300 }}
         role="dialog"
         aria-label="Mi Pedido"
         aria-modal="true"
@@ -70,7 +74,7 @@ export function CartDrawer() {
             <X className="h-6 w-6" />
           </button>
         </header>
-        
+
         {/* Content */}
         {items.length === 0 ? (
           /* Empty State */
@@ -107,21 +111,32 @@ export function CartDrawer() {
                   {totalItems} {totalItems === 1 ? 'item' : 'items'}
                 </span>
               </div>
-              
+
               <div className="space-y-4">
-                {items.map((item) => (
-                  <CartItem key={item.id} item={item} />
+                {items.map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: index * 0.08,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
+                    <CartItem item={item} />
+                  </motion.div>
                 ))}
               </div>
             </div>
-            
+
             {/* Footer with Summary */}
             <div className="flex-shrink-0 border-t-2 border-primary bg-cream p-6">
               <CartSummary />
             </div>
           </div>
         )}
-      </aside>
+      </motion.aside>
     </>
   )
 }

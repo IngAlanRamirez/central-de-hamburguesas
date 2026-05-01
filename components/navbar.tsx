@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { useCartStore } from '@/lib/store/cart'
@@ -26,6 +27,13 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const badgeMotion = {
+    initial: { scale: 0 },
+    animate: { scale: 1 },
+    exit: { scale: 0 },
+    transition: { type: 'spring' as const, stiffness: 500, damping: 15 },
+  }
 
   return (
     <>
@@ -74,11 +82,17 @@ export default function Navbar() {
               aria-label={`Carrito, ${totalItems} ${totalItems === 1 ? 'item' : 'items'}`}
             >
               <ShoppingCart className="h-5 w-5" />
-              {totalItems > 0 && (
-                <span className="absolute -right-0.5 -top-0.5 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold text-white">
-                  {totalItems}
-                </span>
-              )}
+              <AnimatePresence>
+                {totalItems > 0 && (
+                  <motion.span
+                    key={totalItems}
+                    {...badgeMotion}
+                    className="absolute -right-0.5 -top-0.5 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold text-white"
+                  >
+                    {totalItems}
+                  </motion.span>
+                )}
+              </AnimatePresence>
             </button>
             <div className="relative">
               <div className="animate-pulse-ring pointer-events-none absolute inset-0 rounded-full" />
@@ -100,57 +114,76 @@ export default function Navbar() {
       </header>
 
       {/* Mobile Drawer */}
-      {mobileOpen && (
-        <>
-          <div
-            className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm"
-            onClick={() => setMobileOpen(false)}
-          />
-          <div className="fixed right-0 top-0 z-50 h-full w-72 bg-cream/95 p-6 shadow-xl backdrop-blur-md transition-transform">
-            <div className="flex items-center justify-between">
-              <span className="font-display text-xl uppercase text-text">Menú</span>
-              <button onClick={() => setMobileOpen(false)} aria-label="Cerrar menú">
-                <X className="h-6 w-6 text-text" />
-              </button>
-            </div>
-            <nav className="mt-8 flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="font-body text-lg font-medium text-text transition-colors hover:text-primary"
-                  onClick={() => setMobileOpen(false)}
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            <motion.div
+              key="mobile-backdrop"
+              className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileOpen(false)}
+            />
+            <motion.div
+              key="mobile-drawer"
+              className="fixed right-0 top-0 z-50 h-full w-72 bg-cream/95 p-6 shadow-xl backdrop-blur-md"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            >
+              <div className="flex items-center justify-between">
+                <span className="font-display text-xl uppercase text-text">Menú</span>
+                <button onClick={() => setMobileOpen(false)} aria-label="Cerrar menú">
+                  <X className="h-6 w-6 text-text" />
+                </button>
+              </div>
+              <nav className="mt-8 flex flex-col gap-4">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="font-body text-lg font-medium text-text transition-colors hover:text-primary"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <button
+                  onClick={() => {
+                    openCart()
+                    setMobileOpen(false)
+                  }}
+                  className="flex items-center gap-3 font-body text-lg font-medium text-text transition-colors hover:text-primary"
                 >
-                  {link.label}
-                </a>
-              ))}
-              <button
-                onClick={() => {
-                  openCart()
-                  setMobileOpen(false)
-                }}
-                className="flex items-center gap-3 font-body text-lg font-medium text-text transition-colors hover:text-primary"
-              >
-                <ShoppingCart className="h-5 w-5" />
-                Carrito
-                {totalItems > 0 && (
-                  <span className="ml-auto flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-primary px-1.5 text-xs font-bold text-white">
-                    {totalItems}
-                  </span>
-                )}
-              </button>
-              <Button
-                href="https://wa.me/5215519082651"
-                variant="primary"
-                size="md"
-                className="mt-4"
-              >
-                Pedir
-              </Button>
-            </nav>
-          </div>
-        </>
-      )}
+                  <ShoppingCart className="h-5 w-5" />
+                  Carrito
+                  <AnimatePresence>
+                    {totalItems > 0 && (
+                      <motion.span
+                        key={totalItems}
+                        {...badgeMotion}
+                        className="ml-auto flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-primary px-1.5 text-xs font-bold text-white"
+                      >
+                        {totalItems}
+                      </motion.span>
+                    )}
+                  </AnimatePresence>
+                </button>
+                <Button
+                  href="https://wa.me/5215519082651"
+                  variant="primary"
+                  size="md"
+                  className="mt-4"
+                >
+                  Pedir
+                </Button>
+              </nav>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   )
 }

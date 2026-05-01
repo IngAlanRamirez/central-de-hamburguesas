@@ -1,4 +1,7 @@
+'use client'
+
 import { cn } from '@/lib/utils'
+import { motion } from 'framer-motion'
 import React from 'react'
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -21,11 +24,11 @@ export function Button({
 
   const variantClasses = {
     primary:
-      'bg-primary text-white shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed',
+      'bg-primary text-white shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed',
     secondary:
-      'border-2 border-primary text-primary bg-transparent hover:bg-primary/5 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed',
+      'border-2 border-primary text-primary bg-transparent hover:bg-primary/5 disabled:opacity-50 disabled:cursor-not-allowed',
     ghost:
-      'bg-transparent text-primary hover:bg-primary/5 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed',
+      'bg-transparent text-primary hover:bg-primary/5 disabled:opacity-50 disabled:cursor-not-allowed',
   }
 
   const sizeClasses = {
@@ -41,17 +44,34 @@ export function Button({
     className
   )
 
+  const springTransition = { type: 'spring' as const, stiffness: 400 }
+
   if (href && !disabled) {
     return (
-      <a href={href} className={classes}>
+      <motion.a
+        href={href}
+        className={classes}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.95 }}
+        transition={springTransition}
+      >
         {children}
-      </a>
+      </motion.a>
     )
   }
 
+  // Use a motion wrapper to avoid React 19 + Framer Motion type conflicts
+  // with native button event handlers (onDrag, etc.)
   return (
-    <button className={classes} disabled={disabled} {...props}>
+    <motion.button
+      className={classes}
+      disabled={disabled}
+      whileHover={disabled ? undefined : { scale: 1.02 }}
+      whileTap={disabled ? undefined : { scale: 0.95 }}
+      transition={springTransition}
+      {...(props as Record<string, unknown>)}
+    >
       {children}
-    </button>
+    </motion.button>
   )
 }
