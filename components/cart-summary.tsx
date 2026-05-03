@@ -6,6 +6,7 @@ import { useCartStore } from '@/lib/store/cart'
 import { generateWhatsAppMessage } from '@/lib/utils/cart-utils'
 import { Printer, ArrowLeft } from 'lucide-react'
 import { Receipt } from '@/components/receipt'
+import { WHATSAPP_URL } from '@/lib/constants'
 
 export function CartSummary() {
   const [isPrinting, setIsPrinting] = useState(false)
@@ -16,7 +17,7 @@ export function CartSummary() {
   
   const handleWhatsApp = () => {
     const message = generateWhatsAppMessage(items)
-    const url = `https://wa.me/5215519082651?text=${encodeURIComponent(message)}`
+    const url = `${WHATSAPP_URL}?text=${encodeURIComponent(message)}`
     const popup = window.open(url, '_blank')
     if (!popup) {
       alert('Permite los popups para enviar tu pedido por WhatsApp')

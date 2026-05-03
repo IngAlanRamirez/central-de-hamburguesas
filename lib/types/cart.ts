@@ -27,7 +27,6 @@ export interface CartStore {
   // Computed
   totalItems: () => number
   totalPrice: () => number
-  formattedTotal: () => string
 
   // Hydration
   _hydrated: boolean

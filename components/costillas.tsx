@@ -5,11 +5,11 @@ import { Check } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ProductCard } from '@/components/ui/product-card'
 import { useCartStore } from '@/lib/store/cart'
-import { costillasProduct, sauceOptions, costillasExtras, type SauceOption } from '@/lib/data/costillas'
+import { costillasProduct, sauceOptions, costillasExtras } from '@/lib/data/costillas'
 import type { CartItem } from '@/lib/types/cart'
 
 export default function Costillas() {
-  const [sauce, setSauce] = useState<SauceOption>(sauceOptions[0])
+  const [sauce, setSauce] = useState(sauceOptions[0])
   const [withFries, setWithFries] = useState(false)
   const addItem = useCartStore((s) => s.addItem)
 

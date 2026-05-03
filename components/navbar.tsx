@@ -132,7 +132,7 @@ export default function Navbar() {
             >
               <div className="flex items-center justify-between">
                 <span className="font-display text-xl uppercase text-text">Menú</span>
-                <button onClick={() => setMobileOpen(false)} aria-label="Cerrar menú">
+                <button type="button" onClick={() => setMobileOpen(false)} aria-label="Cerrar menú">
                   <X className="h-6 w-6 text-text" />
                 </button>
               </div>

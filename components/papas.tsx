@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import { ProductCard } from '@/components/ui/product-card'
 import { useCartStore } from '@/lib/store/cart'
 import { papas, type PapaProduct } from '@/lib/data/papas'
-import { sauceOptions } from '@/lib/data/wings'
+import { SAUCE_OPTIONS as sauceOptions } from '@/lib/constants'
 import type { CartItem } from '@/lib/types/cart'
 
 function PapaCard({ papa, index }: { papa: PapaProduct; index: number }) {

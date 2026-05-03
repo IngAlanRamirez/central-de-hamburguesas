@@ -29,6 +29,7 @@ export const metadata: Metadata = {
   description:
     'Hamburguesas craft premium en CDMX. Ingredientes frescos, recetas exclusivas, y ese sabor que solo nosotros tenemos. ¡Ordena ya!',
   keywords: ['hamburguesas', 'CDMX', 'craft', 'burger', 'delivery', 'WhatsApp'],
+  icons: { icon: '/favicon.svg' },
   openGraph: {
     title: 'Central de Hamburguesas | Sabor que Manda',
     description:

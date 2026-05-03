@@ -68,10 +68,6 @@ export const useCartStore = create<CartStore>()(
         return get().items.reduce((sum, item) => sum + item.price * item.quantity, 0)
       },
       
-      formattedTotal: () => {
-        return `$${get().totalPrice()}`
-      },
-
       // Hydration
       _hydrated: false,
       _setHydrated: () => set({ _hydrated: true }),

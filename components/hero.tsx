@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { ChevronDown } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { WHATSAPP_URL } from '@/lib/constants'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -70,7 +71,7 @@ export default function Hero() {
                 Ver Menú
               </Button>
               <Button
-                href="https://wa.me/5215519082651"
+                href={WHATSAPP_URL}
                 variant="primary"
                 size="lg"
               >

@@ -47,10 +47,12 @@ export default function Menu() {
     <Section id="menu" title="Nuestro Menú" subtitle="Todo lo que se te antoje">
       <AnimateOnScroll direction="fade">
         {/* Tabs */}
-        <div className="mb-8 flex flex-wrap gap-2">
+        <div className="mb-8 flex flex-wrap gap-2" role="tablist">
           {categories.map((cat) => (
             <button
               key={cat}
+              role="tab"
+              aria-selected={activeTab === cat}
               onClick={() => setActiveTab(cat)}
               className={cn(
                 'relative whitespace-nowrap px-4 py-2 text-sm font-medium transition-colors',

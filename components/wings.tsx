@@ -5,11 +5,11 @@ import { Check } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ProductCard } from '@/components/ui/product-card'
 import { useCartStore } from '@/lib/store/cart'
-import { wingsProduct, sauceOptions, wingsExtras, type SauceOption } from '@/lib/data/wings'
+import { wingsProduct, sauceOptions, wingsExtras } from '@/lib/data/wings'
 import type { CartItem } from '@/lib/types/cart'
 
 export default function Wings() {
-  const [sauce, setSauce] = useState<SauceOption>(sauceOptions[0])
+  const [sauce, setSauce] = useState(sauceOptions[0])
   const [withFries, setWithFries] = useState(false)
   const addItem = useCartStore((s) => s.addItem)
 

@@ -114,32 +114,4 @@ export const burgers: BurgerProduct[] = [
   },
 ]
 
-export function generateBurgerDescription(
-  burger: BurgerProduct,
-  meat: MeatType,
-  selections: Record<string, string[]>
-): string {
-  const parts: string[] = [`Carne: ${meat}`]
 
-  if (burger.extraGroups) {
-    for (const group of burger.extraGroups) {
-      const selected = selections[group.id]
-      if (selected && selected.length > 0) {
-        parts.push(`${group.label}: ${selected.join(', ')}`)
-      }
-    }
-  }
-
-  return parts.join(' | ')
-}
-
-export function generateBurgerWhatsAppMessage(
-  burger: BurgerProduct,
-  meat: MeatType,
-  selections: Record<string, string[]>,
-  quantity: number
-): string {
-  const details = generateBurgerDescription(burger, meat, selections)
-  const total = burger.basePrice * quantity
-  return `Hola, quiero pedir ${quantity}x ${burger.name} (${details}) = $${total}`
-}

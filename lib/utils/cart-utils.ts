@@ -32,6 +32,4 @@ export function generateWhatsAppMessage(items: CartItem[]): string {
   return `Hola, quiero pedir:\n${lines.join('\n')}\n\nTotal: $${total}\n\n¡Gracias!`
 }
 
-export function formatPrice(price: number): string {
-  return `$${price}`
-}
+

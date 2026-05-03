@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
+import { WHATSAPP_URL } from '@/lib/constants'
 import { Instagram, Facebook } from 'lucide-react'
 import { AnimateOnScroll } from '@/components/ui/animate-on-scroll'
 
@@ -48,7 +49,7 @@ export default function Footer() {
                 <div className="relative inline-block">
                   <div className="animate-pulse-ring pointer-events-none absolute inset-0 rounded-full" />
                   <Button
-                    href="https://wa.me/5215519082651"
+                    href={WHATSAPP_URL}
                     variant="secondary"
                     size="sm"
                   >
