@@ -238,13 +238,6 @@ body::after {
 }
 
 /* ─── Print Styles ─────────────────────────────────────────── */
-@media print {
-  body > *:not([data-print-root]),
-  body::after {
-    display: none !important;
-  }
-
-  @page {
-    margin: 1cm;
-  }
-}
+/* La impresión se maneja abriendo una ventana nueva con el ticket
+   (components/receipt.tsx → buildPrintHtml), así que no necesitamos
+   reglas @media print en la página principal. */

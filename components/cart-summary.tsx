@@ -27,7 +27,7 @@ export function CartSummary() {
   }
 
   if (isPrinting) {
-    return <Receipt />
+    return <Receipt onClose={() => setIsPrinting(false)} />
   }
   
   return (
