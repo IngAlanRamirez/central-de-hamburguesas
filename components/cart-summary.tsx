@@ -17,7 +17,11 @@ export function CartSummary() {
   const handleWhatsApp = () => {
     const message = generateWhatsAppMessage(items)
     const url = `https://wa.me/5215519082651?text=${encodeURIComponent(message)}`
-    window.open(url, '_blank')
+    const popup = window.open(url, '_blank')
+    if (!popup) {
+      alert('Permite los popups para enviar tu pedido por WhatsApp')
+      return
+    }
     clearCart()
     closeCart()
   }

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { useCartStore } from '@/lib/store/cart'
 import { CartItem } from '@/components/cart-item'
@@ -12,6 +12,65 @@ export function CartDrawer() {
   const closeCart = useCartStore((state) => state.closeCart)
   const items = useCartStore((state) => state.items)
   const totalItems = useCartStore((state) => state.totalItems())
+  const drawerRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLElement | null>(null)
+
+  // Guardar el elemento que abrió el drawer para restaurar foco al cerrar
+  useEffect(() => {
+    if (isOpen) {
+      triggerRef.current = document.activeElement as HTMLElement
+    } else if (triggerRef.current) {
+      triggerRef.current.focus()
+      triggerRef.current = null
+    }
+  }, [isOpen])
+
+  // Enfocar el drawer al abrir y atrapar foco
+  useEffect(() => {
+    if (!isOpen || !drawerRef.current) return
+
+    const drawer = drawerRef.current
+
+    // Enfocar el primer botón (cerrar)
+    const closeBtn = drawer.querySelector('button') as HTMLElement | null
+    closeBtn?.focus()
+
+    // Focus trap
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== 'Tab') return
+
+      const focusable = drawer.querySelectorAll<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      )
+      if (focusable.length === 0) return
+
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleTab)
+
+    // Inert el contenido detrás del drawer para screen readers
+    const main = document.querySelector<HTMLElement>('main, [role="main"]')
+    if (main) main.inert = true
+
+    return () => {
+      document.removeEventListener('keydown', handleTab)
+      if (main) main.inert = false
+    }
+  }, [isOpen])
 
   // Close on Escape key
   useEffect(() => {
@@ -53,6 +112,7 @@ export function CartDrawer() {
 
       {/* Drawer */}
       <motion.aside
+        ref={drawerRef}
         className="fixed right-0 top-0 z-[1999] h-full w-full max-w-md bg-cream shadow-2xl"
         initial={{ x: '100%' }}
         animate={{ x: isOpen ? 0 : '100%' }}
@@ -93,7 +153,7 @@ export function CartDrawer() {
             </svg>
             <p className="text-xl font-bold text-text">Tu carrito está vacío</p>
             <p className="text-sm text-text-muted">
-              Agregá combos para comenzar tu pedido
+              Agregá productos del menú para armar tu pedido
             </p>
             <button
               onClick={closeCart}
