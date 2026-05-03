@@ -6,10 +6,12 @@ import { Button } from '@/components/ui/button'
 import { AnimateOnScroll } from '@/components/ui/animate-on-scroll'
 import { QuantityPill } from '@/components/ui/quantity-pill'
 import { useCartStore } from '@/lib/store/cart'
+import { useCartHydrated } from '@/lib/utils/cart-utils'
 import { bebidas, type BebidaProduct } from '@/lib/data/bebidas'
 import type { CartItem } from '@/lib/types/cart'
 
 function BebidaCard({ bebida, index }: { bebida: BebidaProduct; index: number }) {
+  const hydrated = useCartHydrated()
   const items = useCartStore((s) => s.items)
   const addItem = useCartStore((s) => s.addItem)
   const incrementQuantity = useCartStore((s) => s.incrementQuantity)
@@ -92,7 +94,7 @@ function BebidaCard({ bebida, index }: { bebida: BebidaProduct; index: number })
 
           {/* Add to cart */}
           <div className="mt-auto pt-4">
-            {cartItem ? (
+            {hydrated && cartItem ? (
               <QuantityPill
                 quantity={cartItem.quantity}
                 onIncrement={() => incrementQuantity(bebida.id)}

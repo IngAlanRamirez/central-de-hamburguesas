@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="g-Ice · $50" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F5ECD3"/>
+      <stop offset="100%" stop-color="#EDE3C8"/>
+    </linearGradient>
+    <linearGradient id="badge-Ice · $50" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#C41E3A"/>
+      <stop offset="100%" stop-color="#E84444"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="300" rx="16" fill="url(#g-Ice · $50)"/>
+
+  <!-- Subtle noise dots -->
+  <g opacity="0.04" fill="#1A1A1A">
+    <circle cx="12" cy="12" r="1.2"/>
+    <circle cx="84" cy="12" r="1.2"/>
+    <circle cx="156" cy="12" r="1.2"/>
+    <circle cx="228" cy="12" r="1.2"/>
+    <circle cx="300" cy="12" r="1.2"/>
+    <circle cx="372" cy="12" r="1.2"/>
+    <circle cx="12" cy="72" r="1.2"/>
+    <circle cx="84" cy="72" r="1.2"/>
+    <circle cx="156" cy="72" r="1.2"/>
+    <circle cx="228" cy="72" r="1.2"/>
+    <circle cx="300" cy="72" r="1.2"/>
+    <circle cx="372" cy="72" r="1.2"/>
+    <circle cx="12" cy="132" r="1.2"/>
+    <circle cx="84" cy="132" r="1.2"/>
+    <circle cx="156" cy="132" r="1.2"/>
+    <circle cx="228" cy="132" r="1.2"/>
+    <circle cx="300" cy="132" r="1.2"/>
+    <circle cx="372" cy="132" r="1.2"/>
+    <circle cx="12" cy="192" r="1.2"/>
+    <circle cx="84" cy="192" r="1.2"/>
+    <circle cx="156" cy="192" r="1.2"/>
+    <circle cx="228" cy="192" r="1.2"/>
+    <circle cx="300" cy="192" r="1.2"/>
+    <circle cx="372" cy="192" r="1.2"/>
+    <circle cx="12" cy="252" r="1.2"/>
+    <circle cx="84" cy="252" r="1.2"/>
+    <circle cx="156" cy="252" r="1.2"/>
+    <circle cx="228" cy="252" r="1.2"/>
+    <circle cx="300" cy="252" r="1.2"/>
+    <circle cx="372" cy="252" r="1.2"/>
+  </g>
+
+  <!-- Decorative top-right shape -->
+  <path d="M400 0C350 20 320 60 400 80Z" fill="#C41E3A" opacity="0.06"/>
+  <path d="M400 0C370 10 350 40 400 50Z" fill="#C41E3A" opacity="0.08"/>
+
+  <!-- Brand stamp bottom-right -->
+  <text x="380" y="285" font-family="serif" font-size="10" fill="#C41E3A" opacity="0.15" text-anchor="end" font-style="italic">cdh</text>
+
+  <!-- Icon -->
+  <g transform="translate(200, 125)" text-anchor="middle">
+    
+    <g fill="none" stroke="#C41E3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Glass -->
+      <path d="M-35 -40 L-30 30 Q-28 40 -15 40 L15 40 Q28 40 30 30 L35 -40Z" fill="#D4A84B" opacity="0.25"/>
+      <path d="M-35 -40 L-30 30 Q-28 40 -15 40 L15 40 Q28 40 30 30 L35 -40Z" fill="none"/>
+      <!-- Liquid -->
+      <path d="M-32 -20 Q-30 -15 -25 -10 Q-15 0 0 -2 Q15 -4 25 -10 Q30 -15 32 -20 L30 30 Q28 38 15 38 L-15 38 Q-28 38 -30 30Z" fill="#C41E3A" opacity="0.2" stroke="none"/>
+      <!-- Straw -->
+      <line x1="5" y1="-30" x2="20" y2="-55" stroke="#C41E3A" stroke-width="2.5"/>
+      <line x1="20" y1="-55" x2="30" y2="-50" stroke="#C41E3A" stroke-width="2.5"/>
+      <!-- Ice cubes -->
+      <rect x="-15" y="5" width="8" height="8" rx="1" fill="#FFF" opacity="0.3" stroke="none"/>
+      <rect x="5" y="10" width="7" height="7" rx="1" fill="#FFF" opacity="0.2" stroke="none"/>
+      <rect x="-5" y="15" width="6" height="6" rx="1" fill="#FFF" opacity="0.25" stroke="none"/>
+      <!-- Bubbles -->
+      <circle cx="-10" cy="-5" r="1.5" fill="#FFF" stroke="none" opacity="0.3"/>
+      <circle cx="10" cy="0" r="1.5" fill="#FFF" stroke="none" opacity="0.3"/>
+      <circle cx="0" cy="-10" r="1" fill="#FFF" stroke="none" opacity="0.3"/>
+    </g>
+  
+  </g>
+
+  <!-- Title -->
+  <text x="200" y="215" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#1A1A1A" text-anchor="middle" text-transform="uppercase" letter-spacing="1.5">
+    Soda Italiana Ice
+  </text>
+
+  <!-- Decorative line -->
+  <line x1="160" y1="228" x2="240" y2="228" stroke="#C41E3A" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- Price suggestion -->
+  <text x="200" y="255" font-family="system-ui, sans-serif" font-size="12" fill="#666666" text-anchor="middle" letter-spacing="1">
+    Ice · $50
+  </text>
+</svg>

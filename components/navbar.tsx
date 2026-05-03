@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { cn } from '@/lib/utils'
 import { useCartStore } from '@/lib/store/cart'
+import { useCartHydrated } from '@/lib/utils/cart-utils'
 import { Menu, X, ShoppingCart } from 'lucide-react'
 
 const navLinks = [
@@ -18,6 +19,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const hydrated = useCartHydrated()
   const totalItems = useCartStore((state) => state.totalItems())
   const openCart = useCartStore((state) => state.openCart)
 
@@ -79,11 +81,11 @@ export default function Navbar() {
             <button
               onClick={openCart}
               className="relative p-2 text-text transition-colors hover:text-primary"
-              aria-label={`Carrito, ${totalItems} ${totalItems === 1 ? 'item' : 'items'}`}
+              aria-label={`Carrito, ${hydrated ? totalItems : 0} ${(hydrated ? totalItems : 0) === 1 ? 'item' : 'items'}`}
             >
               <ShoppingCart className="h-5 w-5" />
               <AnimatePresence>
-                {totalItems > 0 && (
+                {hydrated && totalItems > 0 && (
                   <motion.span
                     key={totalItems}
                     {...badgeMotion}
@@ -155,7 +157,7 @@ export default function Navbar() {
                   <ShoppingCart className="h-5 w-5" />
                   Carrito
                   <AnimatePresence>
-                    {totalItems > 0 && (
+                    {hydrated && totalItems > 0 && (
                       <motion.span
                         key={totalItems}
                         {...badgeMotion}

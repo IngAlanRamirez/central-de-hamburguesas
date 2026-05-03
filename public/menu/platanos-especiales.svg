@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="g-Especiales · $65" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F5ECD3"/>
+      <stop offset="100%" stop-color="#EDE3C8"/>
+    </linearGradient>
+    <linearGradient id="badge-Especiales · $65" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#C41E3A"/>
+      <stop offset="100%" stop-color="#E84444"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="300" rx="16" fill="url(#g-Especiales · $65)"/>
+
+  <!-- Subtle noise dots -->
+  <g opacity="0.04" fill="#1A1A1A">
+    <circle cx="12" cy="12" r="1.2"/>
+    <circle cx="84" cy="12" r="1.2"/>
+    <circle cx="156" cy="12" r="1.2"/>
+    <circle cx="228" cy="12" r="1.2"/>
+    <circle cx="300" cy="12" r="1.2"/>
+    <circle cx="372" cy="12" r="1.2"/>
+    <circle cx="12" cy="72" r="1.2"/>
+    <circle cx="84" cy="72" r="1.2"/>
+    <circle cx="156" cy="72" r="1.2"/>
+    <circle cx="228" cy="72" r="1.2"/>
+    <circle cx="300" cy="72" r="1.2"/>
+    <circle cx="372" cy="72" r="1.2"/>
+    <circle cx="12" cy="132" r="1.2"/>
+    <circle cx="84" cy="132" r="1.2"/>
+    <circle cx="156" cy="132" r="1.2"/>
+    <circle cx="228" cy="132" r="1.2"/>
+    <circle cx="300" cy="132" r="1.2"/>
+    <circle cx="372" cy="132" r="1.2"/>
+    <circle cx="12" cy="192" r="1.2"/>
+    <circle cx="84" cy="192" r="1.2"/>
+    <circle cx="156" cy="192" r="1.2"/>
+    <circle cx="228" cy="192" r="1.2"/>
+    <circle cx="300" cy="192" r="1.2"/>
+    <circle cx="372" cy="192" r="1.2"/>
+    <circle cx="12" cy="252" r="1.2"/>
+    <circle cx="84" cy="252" r="1.2"/>
+    <circle cx="156" cy="252" r="1.2"/>
+    <circle cx="228" cy="252" r="1.2"/>
+    <circle cx="300" cy="252" r="1.2"/>
+    <circle cx="372" cy="252" r="1.2"/>
+  </g>
+
+  <!-- Decorative top-right shape -->
+  <path d="M400 0C350 20 320 60 400 80Z" fill="#C41E3A" opacity="0.06"/>
+  <path d="M400 0C370 10 350 40 400 50Z" fill="#C41E3A" opacity="0.08"/>
+
+  <!-- Brand stamp bottom-right -->
+  <text x="380" y="285" font-family="serif" font-size="10" fill="#C41E3A" opacity="0.15" text-anchor="end" font-style="italic">cdh</text>
+
+  <!-- Icon -->
+  <g transform="translate(200, 125)" text-anchor="middle">
+    
+    <g fill="none" stroke="#C41E3A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-40 30 Q-55 10 -50 -15 Q-45 -35 -25 -40 Q0 -42 20 -35 Q40 -25 45 -5 Q48 10 35 25 Q20 40 0 42 Q-20 40 -40 30Z" fill="#D4A84B"/>
+      <path d="M-35 20 Q-50 5 -45 -15" stroke="#FFE44D" stroke-width="2"/>
+      <path d="M-20 -35 Q-35 -30 -40 -20" stroke="#FFE44D" stroke-width="1.5" opacity="0.6"/>
+      <path d="M35 -5 Q40 5 30 20" stroke="#FFE44D" stroke-width="1.5" opacity="0.6"/>
+      <!-- Drizzle -->
+      <path d="M-15 0 Q-5 -5 0 5 Q5 15 15 10" stroke="#FFF" stroke-width="1.5" opacity="0.5"/>
+      <path d="M5 -15 Q10 -10 8 -5" stroke="#FFF" stroke-width="1.5" opacity="0.4"/>
+    </g>
+  
+  </g>
+
+  <!-- Title -->
+  <text x="200" y="215" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#1A1A1A" text-anchor="middle" text-transform="uppercase" letter-spacing="1.5">
+    Plátanos Especiales
+  </text>
+
+  <!-- Decorative line -->
+  <line x1="160" y1="228" x2="240" y2="228" stroke="#C41E3A" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- Price suggestion -->
+  <text x="200" y="255" font-family="system-ui, sans-serif" font-size="12" fill="#666666" text-anchor="middle" letter-spacing="1">
+    Especiales · $65
+  </text>
+</svg>

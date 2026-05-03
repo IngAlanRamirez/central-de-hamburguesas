@@ -71,6 +71,10 @@ export const useCartStore = create<CartStore>()(
       formattedTotal: () => {
         return `$${get().totalPrice()}`
       },
+
+      // Hydration
+      _hydrated: false,
+      _setHydrated: () => set({ _hydrated: true }),
     }),
     {
       name: 'cart-storage',

@@ -1,6 +1,7 @@
 'use client'
 
 import { useCartStore } from '@/lib/store/cart'
+import { useCartHydrated } from '@/lib/utils/cart-utils'
 import { QuantityPill } from '@/components/ui/quantity-pill'
 import { Button } from '@/components/ui/button'
 import { Section } from '@/components/ui/section'
@@ -77,6 +78,7 @@ const combos = [
 ]
 
 export default function Combos() {
+  const hydrated = useCartHydrated()
   const items = useCartStore((state) => state.items)
   const addItem = useCartStore((state) => state.addItem)
   const incrementQuantity = useCartStore((state) => state.incrementQuantity)
@@ -116,7 +118,7 @@ export default function Combos() {
                 image={combo.image}
                 badge={combo.badge}
               >
-                {cartItem ? (
+                {hydrated && cartItem ? (
                   <QuantityPill
                     quantity={cartItem.quantity}
                     onIncrement={() => incrementQuantity(combo.id)}

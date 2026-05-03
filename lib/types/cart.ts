@@ -28,4 +28,8 @@ export interface CartStore {
   totalItems: () => number
   totalPrice: () => number
   formattedTotal: () => string
+
+  // Hydration
+  _hydrated: boolean
+  _setHydrated: () => void
 }

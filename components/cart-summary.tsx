@@ -1,10 +1,14 @@
 'use client'
 
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { useCartStore } from '@/lib/store/cart'
 import { generateWhatsAppMessage } from '@/lib/utils/cart-utils'
+import { Printer, ArrowLeft } from 'lucide-react'
+import { Receipt } from '@/components/receipt'
 
 export function CartSummary() {
+  const [isPrinting, setIsPrinting] = useState(false)
   const items = useCartStore((state) => state.items)
   const totalPrice = useCartStore((state) => state.totalPrice())
   const closeCart = useCartStore((state) => state.closeCart)
@@ -17,6 +21,14 @@ export function CartSummary() {
     clearCart()
     closeCart()
   }
+
+  const handlePrint = () => {
+    setIsPrinting(true)
+  }
+
+  if (isPrinting) {
+    return <Receipt />
+  }
   
   return (
     <div className="space-y-4 border-t-2 border-primary pt-6">
@@ -25,6 +37,19 @@ export function CartSummary() {
         <span className="text-lg font-bold text-text">Total</span>
         <span className="font-display text-4xl text-primary">${totalPrice}</span>
       </div>
+
+      {/* Print Button */}
+      {items.length > 0 && (
+        <Button
+          onClick={handlePrint}
+          variant="secondary"
+          size="lg"
+          className="flex w-full items-center justify-center gap-2"
+        >
+          <Printer className="h-5 w-5" />
+          Imprimir pedido
+        </Button>
+      )}
       
       {/* WhatsApp Button */}
       <Button
@@ -46,6 +71,7 @@ export function CartSummary() {
         size="lg"
         className="w-full"
       >
+        <ArrowLeft className="mr-2 h-5 w-5" />
         Seguir ordenando
       </Button>
     </div>

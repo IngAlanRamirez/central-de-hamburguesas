@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { AnimateOnScroll } from '@/components/ui/animate-on-scroll'
 import { QuantityPill } from '@/components/ui/quantity-pill'
 import { useCartStore } from '@/lib/store/cart'
+import { useCartHydrated } from '@/lib/utils/cart-utils'
 import { crepas, type CrepaProduct } from '@/lib/data/crepas'
 import type { CartItem } from '@/lib/types/cart'
 
@@ -16,6 +17,7 @@ function CrepaCard({ crepa, index }: { crepa: CrepaProduct; index: number }) {
     crepa.fruitOptions?.[0]?.id ?? ''
   )
 
+  const hydrated = useCartHydrated()
   const items = useCartStore((s) => s.items)
   const addItem = useCartStore((s) => s.addItem)
   const incrementQuantity = useCartStore((s) => s.incrementQuantity)
@@ -133,7 +135,7 @@ function CrepaCard({ crepa, index }: { crepa: CrepaProduct; index: number }) {
 
           {/* Add to cart */}
           <div className="mt-auto pt-4">
-            {cartItem ? (
+            {hydrated && cartItem ? (
               <QuantityPill
                 quantity={cartItem.quantity}
                 onIncrement={() => incrementQuantity(cartId)}

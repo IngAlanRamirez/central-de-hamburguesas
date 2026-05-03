@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { AnimateOnScroll } from '@/components/ui/animate-on-scroll'
 import { QuantityPill } from '@/components/ui/quantity-pill'
 import { useCartStore } from '@/lib/store/cart'
+import { useCartHydrated } from '@/lib/utils/cart-utils'
 import { papas, type PapaProduct } from '@/lib/data/papas'
 import { sauceOptions } from '@/lib/data/wings'
 import type { CartItem } from '@/lib/types/cart'
@@ -16,6 +17,7 @@ function PapaCard({ papa, index }: { papa: PapaProduct; index: number }) {
   const [sauce, setSauce] = useState(sauceOptions[0])
   const [conToppings, setConToppings] = useState(true)
 
+  const hydrated = useCartHydrated()
   const items = useCartStore((s) => s.items)
   const addItem = useCartStore((s) => s.addItem)
   const incrementQuantity = useCartStore((s) => s.incrementQuantity)
@@ -162,7 +164,7 @@ function PapaCard({ papa, index }: { papa: PapaProduct; index: number }) {
 
           {/* Add to cart */}
           <div className="mt-auto pt-4">
-            {cartItem ? (
+            {hydrated && cartItem ? (
               <QuantityPill
                 quantity={cartItem.quantity}
                 onIncrement={() => incrementQuantity(cartId)}

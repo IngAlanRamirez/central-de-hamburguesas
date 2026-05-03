@@ -236,3 +236,15 @@ body::after {
     transform: translateX(0);
   }
 }
+
+/* ─── Print Styles ─────────────────────────────────────────── */
+@media print {
+  body > *:not([data-print-root]),
+  body::after {
+    display: none !important;
+  }
+
+  @page {
+    margin: 1cm;
+  }
+}
