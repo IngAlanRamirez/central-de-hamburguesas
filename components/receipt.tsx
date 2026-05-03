@@ -6,6 +6,16 @@ import { Printer, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useCartStore } from '@/lib/store/cart'
 
+/** Escapa caracteres HTML para prevenir XSS en el ticket imprimible */
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
+}
+
 function buildPrintHtml(items: CartItem[], total: number): string {
   const now = new Date()
   const dateStr = now.toLocaleDateString('es-MX', {
@@ -21,8 +31,8 @@ function buildPrintHtml(items: CartItem[], total: number): string {
         <tr>
           <td class="qty">${item.quantity}</td>
           <td class="product">
-            <div class="name">${item.title}</div>
-            ${item.description ? `<div class="desc">${item.description}</div>` : ''}
+            <div class="name">${escapeHtml(item.title)}</div>
+            ${item.description ? `<div class="desc">${escapeHtml(item.description)}</div>` : ''}
           </td>
           <td class="price">$${item.price * item.quantity}</td>
         </tr>`
