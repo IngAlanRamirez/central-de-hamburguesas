@@ -1,0 +1,16 @@
+{
+  "name": "Central de Hamburguesas",
+  "short_name": "Central",
+  "description": "Hamburguesas craft premium en CDMX",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDF6E3",
+  "theme_color": "#C41E3A",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

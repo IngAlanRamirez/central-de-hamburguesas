@@ -1,0 +1,245 @@
+@import "tailwindcss";
+
+/* Dark mode variant para Tailwind v4 */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Colors */
+  --color-primary: #C41E3A;
+  --color-secondary: #D4A84B;
+  --color-accent: #2D2D2D;
+  --color-cream: #FDF6E3;
+  --color-cream-dark: #F5ECD3;
+  --color-text: #1A1A1A;
+  --color-text-muted: #666666;
+
+  /* Fonts */
+  --font-anton: var(--font-anton), sans-serif;
+  --font-dm-sans: var(--font-dm-sans), sans-serif;
+  --font-space-mono: var(--font-space-mono), monospace;
+
+  /* Font families */
+  --font-display: var(--font-anton), sans-serif;
+  --font-body: var(--font-dm-sans), sans-serif;
+  --font-mono: var(--font-space-mono), monospace;
+
+  /* Animation */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Light theme (default) */
+:root {
+  --color-primary: #C41E3A;
+  --color-primary-hover: #D42A45;
+  --color-secondary: #D4A84B;
+  --color-accent: #2D2D2D;
+  --color-cream: #FDF6E3;
+  --color-cream-dark: #F5ECD3;
+  --color-text: #1A1A1A;
+  --color-text-muted: #666666;
+  --color-bg-overlay: rgba(0, 0, 0, 0.4);
+  --noise-opacity: 0.02;
+
+  color-scheme: light;
+}
+
+/* Dark theme */
+:root.dark {
+  --color-primary: #E84444;
+  --color-primary-hover: #FF5555;
+  --color-secondary: #D4A84B;
+  --color-accent: #E8E8E8;
+  --color-cream: #0F0F0F;
+  --color-cream-dark: #1A1A1A;
+  --color-text: #E8E8E8;
+  --color-text-muted: #888888;
+  --color-bg-overlay: rgba(0, 0, 0, 0.7);
+  --noise-opacity: 0.04;
+
+  color-scheme: dark;
+}
+
+/* Transición suave global para cambio de tema */
+body,
+body *,
+body::before,
+body::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Excluir transiciones de animaciones y hover para no afectar performance */
+@media (prefers-reduced-motion: reduce) {
+  body,
+  body *,
+  body::before,
+  body::after {
+    transition: none !important;
+  }
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-cream);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Animation keyframes */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll-indicator {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s var(--ease-smooth) forwards;
+}
+
+.animate-scroll-indicator {
+  animation: scroll-indicator 2s ease-in-out infinite;
+}
+
+.animate-pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  border: 2px solid var(--color-primary);
+  animation: pulse-ring 2s ease-out infinite;
+  opacity: 0.3;
+}
+
+/* Subtle background noise texture */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: var(--noise-opacity, 0.02);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Cart Drawer Styles */
+.cart-drawer-open {
+  overflow: hidden;
+}
+
+/* Quantity Pill Animations */
+.quantity-pill button {
+  transition: transform 0.15s ease;
+}
+
+.quantity-pill button:active {
+  transform: scale(0.9);
+}
+
+/* Cart Item Animations */
+.cart-item-enter {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ─── Print Styles ─────────────────────────────────────────── */
+/* La impresión se maneja abriendo una ventana nueva con el ticket
+   (components/receipt.tsx → buildPrintHtml), así que no necesitamos
+   reglas @media print en la página principal. */
