@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Button } from '@/components/ui/button'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 import { cn } from '@/lib/utils'
 import { useCartStore } from '@/lib/store/cart'
@@ -96,12 +95,6 @@ export default function Navbar() {
               </AnimatePresence>
             </button>
             <ThemeToggle />
-            <div className="relative">
-              <div className="animate-pulse-ring pointer-events-none absolute inset-0 rounded-full" />
-              <Button href="https://wa.me/5215519082651" variant="primary" size="sm">
-                Pedir
-              </Button>
-            </div>
           </nav>
 
           {/* Mobile Hamburger */}
@@ -174,14 +167,6 @@ export default function Navbar() {
                   </AnimatePresence>
                 </button>
                 <ThemeToggle className="ml-auto" />
-                <Button
-                  href="https://wa.me/5215519082651"
-                  variant="primary"
-                  size="md"
-                  className="mt-4"
-                >
-                  Pedir
-                </Button>
               </nav>
             </motion.div>
           </>
