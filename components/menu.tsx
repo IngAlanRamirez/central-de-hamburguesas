@@ -14,9 +14,7 @@ import Papas from '@/components/papas'
 import Costillas from '@/components/costillas'
 import Bebidas from '@/components/bebidas'
 
-type Category = 'Hamburguesas' | 'Boneless' | 'Hot Dogs' | 'Wings' | 'Crepas' | 'Plátanos' | 'Papas' | 'Costillas' | 'Bebidas'
-
-const categories: Category[] = [
+const categories = [
   'Hamburguesas',
   'Boneless',
   'Hot Dogs',
@@ -26,7 +24,9 @@ const categories: Category[] = [
   'Papas',
   'Costillas',
   'Bebidas',
-]
+] as const
+
+type Category = (typeof categories)[number]
 
 const categoryComponents: Record<Category, ReactNode> = {
   Hamburguesas: <Hamburguesas />,

@@ -7,7 +7,7 @@ const characters = [
   { title: 'Tano Banano', image: '/characters/Tano_Banano.png' },
   { title: 'Doggy', image: '/characters/Doggy.png' },
   { title: 'Papas Flow', image: '/characters/Papas_Flow.png' },
-  { title: 'Ally Wing', image: '/characters/Ally Wing.png' },
+  { title: 'Ally Wing', image: '/characters/Ally_Wing.png' },
   { title: 'Bonny Less', image: '/characters/Bonny_Less.png' },
 ]
 
@@ -23,19 +23,19 @@ export default function Characters() {
         <AnimateOnScroll delay={0} className="col-span-2">
           <Card variant="character" title={characters[0].title} image={characters[0].image} />
         </AnimateOnScroll>
-        <AnimateOnScroll delay={100} className="col-span-1">
+        <AnimateOnScroll delay={150} className="col-span-1">
           <Card variant="character" title={characters[1].title} image={characters[1].image} />
         </AnimateOnScroll>
-        <AnimateOnScroll delay={200} className="col-span-1">
+        <AnimateOnScroll delay={300} className="col-span-1">
           <Card variant="character" title={characters[2].title} image={characters[2].image} />
         </AnimateOnScroll>
-        <AnimateOnScroll delay={300} className="col-span-1">
+        <AnimateOnScroll delay={450} className="col-span-1">
           <Card variant="character" title={characters[3].title} image={characters[3].image} />
         </AnimateOnScroll>
-        <AnimateOnScroll delay={400} className="col-span-1">
+        <AnimateOnScroll delay={600} className="col-span-1">
           <Card variant="character" title={characters[4].title} image={characters[4].image} />
         </AnimateOnScroll>
-        <AnimateOnScroll delay={500} className="col-span-2">
+        <AnimateOnScroll delay={750} className="col-span-2">
           <Card variant="character" title={characters[5].title} image={characters[5].image} />
         </AnimateOnScroll>
       </div>

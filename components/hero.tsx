@@ -102,12 +102,11 @@ export default function Hero() {
       {/* Scroll Indicator */}
       <a
         href="#combos"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-text-muted transition-colors hover:text-primary"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-text-muted transition-all duration-500 hover:text-primary"
         aria-label="Ver combos"
         style={{
           opacity: scrolled ? 0 : 1,
-          transition: 'opacity 0.5s ease',
-          pointerEvents: scrolled ? 'none' : 'auto',
+          visibility: scrolled ? 'hidden' : 'visible',
         }}
       >
         <ChevronDown className="h-8 w-8 animate-scroll-indicator" />
